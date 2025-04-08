@@ -1,0 +1,400 @@
+
+*** Running vivado
+    with args -log example_ibert_ultrascale_gth_1.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source example_ibert_ultrascale_gth_1.tcl
+
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source example_ibert_ultrascale_gth_1.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/bouthsarath/Vivado/2022.2/data/ip'.
+Command: read_checkpoint -auto_incremental -incremental /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.srcs/utils_1/imports/synth_1/example_ibert_ultrascale_gth_1.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.srcs/utils_1/imports/synth_1/example_ibert_ultrascale_gth_1.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top example_ibert_ultrascale_gth_1 -part xczu6eg-ffvb1156-1-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu6eg'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu6eg'
+INFO: [Common 17-1540] The version limit for your license is '2025.02' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for new releases.
+INFO: [Device 21-403] Loading part xczu6eg-ffvb1156-1-e
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 3806428
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/bouthsarath/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2952.711 ; gain = 240.801 ; free physical = 12076 ; free virtual = 87844
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3929.734; parent = 2956.684; children = 973.051
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'example_ibert_ultrascale_gth_1' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:21]
+INFO: [Synth 8-638] synthesizing module 'top' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/synth/top.vhd:59]
+INFO: [Synth 8-3491] module 'top_proc_sys_reset_0_0' declared at '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/.Xil/Vivado-3806360-WPS-171005/realtime/top_proc_sys_reset_0_0_stub.vhdl:5' bound to instance 'proc_sys_reset_0' of component 'top_proc_sys_reset_0_0' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/synth/top.vhd:358]
+INFO: [Synth 8-638] synthesizing module 'top_proc_sys_reset_0_0' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/.Xil/Vivado-3806360-WPS-171005/realtime/top_proc_sys_reset_0_0_stub.vhdl:21]
+INFO: [Synth 8-3491] module 'top_smartconnect_0_0' declared at '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/.Xil/Vivado-3806360-WPS-171005/realtime/top_smartconnect_0_0_stub.vhdl:5' bound to instance 'smartconnect_0' of component 'top_smartconnect_0_0' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/synth/top.vhd:371]
+INFO: [Synth 8-638] synthesizing module 'top_smartconnect_0_0' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/.Xil/Vivado-3806360-WPS-171005/realtime/top_smartconnect_0_0_stub.vhdl:87]
+INFO: [Synth 8-3491] module 'top_zynq_ultra_ps_e_0_0' declared at '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/.Xil/Vivado-3806360-WPS-171005/realtime/top_zynq_ultra_ps_e_0_0_stub.vhdl:5' bound to instance 'zynq_ultra_ps_e_0' of component 'top_zynq_ultra_ps_e_0_0' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/synth/top.vhd:450]
+INFO: [Synth 8-638] synthesizing module 'top_zynq_ultra_ps_e_0_0' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/.Xil/Vivado-3806360-WPS-171005/realtime/top_zynq_ultra_ps_e_0_0_stub.vhdl:53]
+INFO: [Synth 8-256] done synthesizing module 'top' (0#1) [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/synth/top.vhd:59]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_araddr' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arburst' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arcache' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arlen' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arlock' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arprot' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arqos' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arready' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arsize' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_aruser' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_arvalid' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awaddr' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awburst' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awcache' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awlen' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awlock' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awprot' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awqos' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awready' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awsize' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awuser' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_awvalid' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_bready' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_bresp' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_bvalid' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_rdata' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_rlast' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_rready' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_rresp' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_rvalid' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_wdata' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_wlast' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_wready' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_wstrb' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7071] port 'M00_AXI_0_wvalid' of module 'top' is unconnected for instance 'system' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+WARNING: [Synth 8-7023] instance 'system' of module 'top' has 36 connections declared, but only 1 given [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:65]
+INFO: [Synth 8-6157] synthesizing module 'IBUFDS_GTE4' [/home/bouthsarath/Vivado/2022.2/scripts/rt/data/unisim_comp.v:71527]
+INFO: [Synth 8-6155] done synthesizing module 'IBUFDS_GTE4' (0#1) [/home/bouthsarath/Vivado/2022.2/scripts/rt/data/unisim_comp.v:71527]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/.Xil/Vivado-3806360-WPS-171005/realtime/clk_wiz_0_stub.vhdl:13]
+INFO: [Synth 8-638] synthesizing module 'ibert_ultrascale_gth_1' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/.Xil/Vivado-3806360-WPS-171005/realtime/ibert_ultrascale_gth_1_stub.vhdl:35]
+WARNING: [Synth 8-7071] port 'rxoutclk_o' of module 'ibert_ultrascale_gth_1' is unconnected for instance 'u_ibert_gth_core' [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:154]
+WARNING: [Synth 8-7023] instance 'u_ibert_gth_core' of module 'ibert_ultrascale_gth_1' has 24 connections declared, but only 23 given [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:154]
+INFO: [Synth 8-6155] done synthesizing module 'example_ibert_ultrascale_gth_1' (0#1) [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.v:21]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 3025.648 ; gain = 313.738 ; free physical = 12013 ; free virtual = 87782
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3998.703; parent = 3025.652; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 3043.461 ; gain = 331.551 ; free physical = 12013 ; free virtual = 87782
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4016.516; parent = 3043.465; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 3043.461 ; gain = 331.551 ; free physical = 12013 ; free virtual = 87782
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4016.516; parent = 3043.465; children = 973.051
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3049.398 ; gain = 0.000 ; free physical = 12013 ; free virtual = 87782
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/ip/top_zynq_ultra_ps_e_0_0/top_zynq_ultra_ps_e_0_0/top_zynq_ultra_ps_e_0_0_in_context.xdc] for cell 'system/zynq_ultra_ps_e_0'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/ip/top_zynq_ultra_ps_e_0_0/top_zynq_ultra_ps_e_0_0/top_zynq_ultra_ps_e_0_0_in_context.xdc] for cell 'system/zynq_ultra_ps_e_0'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/ip/top_smartconnect_0_0/top_smartconnect_0_0/top_smartconnect_0_0_in_context.xdc] for cell 'system/smartconnect_0'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/ip/top_smartconnect_0_0/top_smartconnect_0_0/top_smartconnect_0_0_in_context.xdc] for cell 'system/smartconnect_0'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/ip/top_proc_sys_reset_0_0/top_proc_sys_reset_0_0/top_proc_sys_reset_0_0_in_context.xdc] for cell 'system/proc_sys_reset_0'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/ip/top_proc_sys_reset_0_0/top_proc_sys_reset_0_0/top_proc_sys_reset_0_0_in_context.xdc] for cell 'system/proc_sys_reset_0'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'sys_clk0'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'sys_clk0'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc] for cell 'u_ibert_gth_core'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc] for cell 'u_ibert_gth_core'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc]
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/example_ibert_ultrascale_gth_1_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/example_ibert_ultrascale_gth_1_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3140.180 ; gain = 0.000 ; free physical = 12047 ; free virtual = 87816
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3140.180 ; gain = 0.000 ; free physical = 12047 ; free virtual = 87816
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/bouthsarath/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3140.180 ; gain = 428.270 ; free physical = 12086 ; free virtual = 87855
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4081.219; parent = 3108.168; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu6eg-ffvb1156-1-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3140.180 ; gain = 428.270 ; free physical = 12086 ; free virtual = 87855
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4081.219; parent = 3108.168; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxn_i[0]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 1).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxn_i[0]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 2).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxn_i[1]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxn_i[1]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 4).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxn_i[2]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 5).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxn_i[2]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 6).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxn_i[3]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 7).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxn_i[3]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 8).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxn_i[4]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 9).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxn_i[4]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 10).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxn_i[5]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 11).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxn_i[5]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 12).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxn_i[6]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 13).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxn_i[6]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 14).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxn_i[7]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 15).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxn_i[7]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 16).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxp_i[0]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 17).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxp_i[0]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 18).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxp_i[1]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 19).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxp_i[1]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 20).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxp_i[2]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 21).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxp_i[2]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 22).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxp_i[3]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 23).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxp_i[3]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 24).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxp_i[4]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 25).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxp_i[4]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 26).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxp_i[5]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 27).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxp_i[5]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 28).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxp_i[6]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 29).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxp_i[6]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 30).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_rxp_i[7]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 31).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_rxp_i[7]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 32).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txn_o[0]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 33).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txn_o[0]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 34).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txn_o[1]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 35).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txn_o[1]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 36).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txn_o[2]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 37).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txn_o[2]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 38).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txn_o[3]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 39).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txn_o[3]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 40).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txn_o[4]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 41).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txn_o[4]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 42).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txn_o[5]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 43).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txn_o[5]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 44).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txn_o[6]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 45).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txn_o[6]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 46).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txn_o[7]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 47).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txn_o[7]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 48).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txp_o[0]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 49).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txp_o[0]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 50).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txp_o[1]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 51).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txp_o[1]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 52).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txp_o[2]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 53).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txp_o[2]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 54).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txp_o[3]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 55).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txp_o[3]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 56).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txp_o[4]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 57).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txp_o[4]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 58).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txp_o[5]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 59).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txp_o[5]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 60).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txp_o[6]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 61).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txp_o[6]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 62).
+Applied set_property IO_BUFFER_TYPE = NONE for gth_txp_o[7]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 63).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for gth_txp_o[7]. (constraint file  /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_in_context.xdc, line 64).
+Applied set_property KEEP_HIERARCHY = SOFT for system. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for system/zynq_ultra_ps_e_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for system/smartconnect_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for system/proc_sys_reset_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for sys_clk0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for u_ibert_gth_core. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3140.180 ; gain = 428.270 ; free physical = 12086 ; free virtual = 87855
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4081.219; parent = 3108.168; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3140.180 ; gain = 428.270 ; free physical = 12110 ; free virtual = 87880
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4081.219; parent = 3108.168; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1973 (col length:168)
+BRAMs: 1428 (col length: RAMB18 168 RAMB36 84)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 3140.180 ; gain = 428.270 ; free physical = 12109 ; free virtual = 87883
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2253.682; parent = 2087.389; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4081.219; parent = 3108.168; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 3564.172 ; gain = 852.262 ; free physical = 11783 ; free virtual = 87557
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2792.819; parent = 2626.560; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4537.227; parent = 3564.176; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 3564.172 ; gain = 852.262 ; free physical = 11783 ; free virtual = 87557
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2792.960; parent = 2626.700; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4537.227; parent = 3564.176; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 3583.203 ; gain = 871.293 ; free physical = 11760 ; free virtual = 87533
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2793.800; parent = 2627.540; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4556.258; parent = 3583.207; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-4442] BlackBox module u_ibert_gth_core has unconnected pin gtrefclk0_i[1]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module u_ibert_gth_core has unconnected pin gtrefclk1_i[1]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module u_ibert_gth_core has unconnected pin gtnorthrefclk0_i[1]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module u_ibert_gth_core has unconnected pin gtnorthrefclk1_i[1]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module u_ibert_gth_core has unconnected pin gtsouthrefclk0_i[1]
+CRITICAL WARNING: [Synth 8-4442] BlackBox module u_ibert_gth_core has unconnected pin gtsouthrefclk1_i[1]
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3589.141 ; gain = 877.230 ; free physical = 11762 ; free virtual = 87536
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2794.034; parent = 2627.774; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4562.195; parent = 3589.145; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3589.141 ; gain = 877.230 ; free physical = 11762 ; free virtual = 87536
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2794.050; parent = 2627.790; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4562.195; parent = 3589.145; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3589.141 ; gain = 877.230 ; free physical = 11762 ; free virtual = 87536
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2794.093; parent = 2627.833; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4562.195; parent = 3589.145; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3589.141 ; gain = 877.230 ; free physical = 11762 ; free virtual = 87536
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2794.155; parent = 2627.896; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4562.195; parent = 3589.145; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3589.141 ; gain = 877.230 ; free physical = 11762 ; free virtual = 87536
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2794.155; parent = 2627.896; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4562.195; parent = 3589.145; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3589.141 ; gain = 877.230 ; free physical = 11762 ; free virtual = 87536
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2794.175; parent = 2627.915; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4562.195; parent = 3589.145; children = 973.051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+------------------------+----------+
+|      |BlackBox name           |Instances |
++------+------------------------+----------+
+|1     |top_proc_sys_reset_0_0  |         1|
+|2     |top_smartconnect_0_0    |         1|
+|3     |top_zynq_ultra_ps_e_0_0 |         1|
+|4     |clk_wiz_0               |         1|
+|5     |ibert_ultrascale_gth_1  |         1|
++------+------------------------+----------+
+
+Report Cell Usage: 
++------+-----------------------------+------+
+|      |Cell                         |Count |
++------+-----------------------------+------+
+|1     |clk_wiz_0_bbox               |     1|
+|2     |ibert_ultrascale_gth_1_bbox  |     1|
+|3     |top_proc_sys_reset_0_0_bbox  |     1|
+|4     |top_smartconnect_0_0_bbox    |     1|
+|5     |top_zynq_ultra_ps_e_0_0_bbox |     1|
+|6     |IBUFDS_GTE4                  |     2|
+|7     |OBUF                         |     2|
++------+-----------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 3589.141 ; gain = 877.230 ; free physical = 11762 ; free virtual = 87536
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2794.206; parent = 2627.946; children = 166.293
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4562.195; parent = 3589.145; children = 973.051
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 6 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 3589.141 ; gain = 780.512 ; free physical = 11763 ; free virtual = 87536
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 3589.148 ; gain = 877.230 ; free physical = 11763 ; free virtual = 87537
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3589.148 ; gain = 0.000 ; free physical = 11763 ; free virtual = 87537
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3629.797 ; gain = 0.000 ; free physical = 11836 ; free virtual = 87609
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 22d76de8
+INFO: [Common 17-83] Releasing license: Synthesis
+40 Infos, 39 Warnings, 6 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 3629.797 ; gain = 1852.898 ; free physical = 11861 ; free virtual = 87634
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+INFO: [Common 17-1381] The checkpoint '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/synth_1/example_ibert_ultrascale_gth_1.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file example_ibert_ultrascale_gth_1_utilization_synth.rpt -pb example_ibert_ultrascale_gth_1_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Mar 17 15:40:19 2025...

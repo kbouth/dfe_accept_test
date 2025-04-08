@@ -1,0 +1,4 @@
+vhdl xil_defaultlib  \
+"../../../../ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_sim_netlist.vhdl" \
+
+nosort

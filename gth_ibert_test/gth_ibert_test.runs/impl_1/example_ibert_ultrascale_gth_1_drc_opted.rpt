@@ -1,0 +1,278 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
+| Date         : Mon Mar 17 15:41:31 2025
+| Host         : WPS-171005 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_drc -file example_ibert_ultrascale_gth_1_drc_opted.rpt -pb example_ibert_ultrascale_gth_1_drc_opted.pb -rpx example_ibert_ultrascale_gth_1_drc_opted.rpx
+| Design       : example_ibert_ultrascale_gth_1
+| Device       : xczu6eg-ffvb1156-1-e
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 48
++-----------+----------+---------------------------------------------------------------------+------------+
+| Rule      | Severity | Description                                                         | Violations |
++-----------+----------+---------------------------------------------------------------------+------------+
+| AVAL-155  | Advisory | enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND | 16         |
+| AVAL-156  | Advisory | enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND    | 16         |
+| REQP-1701 | Advisory | enum_DREG_0_connects_CED_GND                                        | 16         |
++-----------+----------+---------------------------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+AVAL-155#1 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[0].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#2 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[0].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#3 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[1].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#4 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[1].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#5 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[2].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#6 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[2].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#7 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[3].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#8 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[3].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#9 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[0].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#10 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[0].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#11 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[1].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#12 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[1].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#13 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[2].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#14 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[2].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#15 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[3].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-155#16 Advisory
+enum_AMULTSEL_BMULTSEL_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[3].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the D port (AMULTSEL = A and BMULTSEL = B). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#1 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[0].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#2 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[0].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#3 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[1].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#4 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[1].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#5 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[2].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#6 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[2].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#7 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[3].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#8 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[3].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#9 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[0].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#10 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[0].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#11 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[1].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#12 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[1].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#13 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[2].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#14 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[2].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#15 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[3].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-156#16 Advisory
+enum_USE_MULT_NONE__enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[3].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: DSP48E2 is not using the Multiplier (USE_MULT = NONE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+REQP-1701#1 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[0].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#2 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[0].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#3 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[1].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#4 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[1].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#5 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[2].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#6 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[2].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#7 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[3].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#8 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[0].u_q/CH[3].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#9 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[0].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#10 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[0].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#11 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[1].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#12 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[1].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#13 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[2].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#14 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[2].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#15 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[3].u_ch/U_PATTERN_HANDLER/bit_err_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+REQP-1701#16 Advisory
+enum_DREG_0_connects_CED_GND  
+u_ibert_gth_core/inst/QUAD[1].u_q/CH[3].u_ch/U_PATTERN_HANDLER/rx_word_counter/u_accum_inst/i_synth/i_baseip.i_xbip_accum/dsp48_implementation.use_usecase.i_xbip_dsp48_acc/i_synth_option.i_synth_model/opt_vx5.i_uniwrap/i_primitive: When the DSP48E2 DREG attribute is set to 0, the CED input pin should be tied to GND to save power.
+Related violations: <none>
+
+

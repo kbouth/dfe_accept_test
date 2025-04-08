@@ -1,0 +1,7 @@
+vhdl xil_defaultlib  \
+"../../../bd/top/ip/top_zynq_ultra_ps_e_0_0/top_zynq_ultra_ps_e_0_0_sim_netlist.vhdl" \
+"/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/bd/top/ip/top_smartconnect_0_0/top_smartconnect_0_0_sim_netlist.vhdl" \
+"../../../bd/top/ip/top_proc_sys_reset_0_0/sim/top_proc_sys_reset_0_0.vhd" \
+"../../../bd/top/sim/top.vhd" \
+
+nosort

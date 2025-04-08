@@ -1,0 +1,2 @@
+ibert_ultrascale_gth_1_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../../ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1_sim_netlist.vhdl,incdir="../../../../ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/hdl/verilog"incdir="../../../../ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/synth"
+glbl.v,Verilog,xil_defaultlib,glbl.v

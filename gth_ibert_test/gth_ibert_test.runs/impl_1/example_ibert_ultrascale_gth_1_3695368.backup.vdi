@@ -1,0 +1,1312 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Mon Mar 17 10:40:57 2025
+# Process ID: 3695368
+# Current directory: /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1
+# Command line: vivado -log example_ibert_ultrascale_gth_1.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source example_ibert_ultrascale_gth_1.tcl -notrace
+# Log file: /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/example_ibert_ultrascale_gth_1.vdi
+# Journal file: /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/vivado.jou
+# Running On: WPS-171005, OS: Linux, CPU Frequency: 800.842 MHz, CPU Physical cores: 16, Host memory: 67199 MB
+#-----------------------------------------------------------
+source example_ibert_ultrascale_gth_1.tcl -notrace
+Command: link_design -top example_ibert_ultrascale_gth_1 -part xczu6eg-ffvb1156-1-e
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xczu6eg-ffvb1156-1-e
+INFO: [Project 1-454] Reading design checkpoint '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.dcp' for cell 'sys_clk'
+INFO: [Project 1-454] Reading design checkpoint '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1.dcp' for cell 'u_ibert_gth_core'
+Netlist sorting complete. Time (s): cpu = 00:00:00.12 ; elapsed = 00:00:00.12 . Memory (MB): peak = 2678.582 ; gain = 0.000 ; free physical = 12728 ; free virtual = 89527
+INFO: [Netlist 29-17] Analyzing 976 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Opt 31-35] Removing redundant IBUF, sys_clk/inst/clkin1_ibuf, from the path connected to top-level port: gth_refclk0p_i[0] 
+Resolution: The tool has removed redundant IBUF. To resolve this warning, check for redundant IBUF in the input design.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'sys_clk/clk_in1' is not directly connected to top level port. Synthesis is ignored for IBUF_LOW_PWR but preserved for implementation.
+INFO: [Chipscope 16-324] Core: u_ibert_gth_core UUID: 2cf3eb45-6b05-5406-9c5e-3f6a66c230b3 
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc] for cell 'sys_clk/inst'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc] for cell 'sys_clk/inst'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc] for cell 'sys_clk/inst'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc:57]
+INFO: [Timing 38-2] Deriving generated clocks [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc:57]
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc] for cell 'sys_clk/inst'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/synth/ibert_ultrascale_gth_1.xdc] for cell 'u_ibert_gth_core/inst'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/synth/ibert_ultrascale_gth_1.xdc] for cell 'u_ibert_gth_core/inst'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/synth/sw_mcs_all.xdc] for cell 'u_ibert_gth_core/inst'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/synth/sw_mcs_all.xdc] for cell 'u_ibert_gth_core/inst'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/synth/attributes.xdc] for cell 'u_ibert_gth_core/inst'
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/synth/attributes.xdc] for cell 'u_ibert_gth_core/inst'
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc]
+WARNING: [Vivado 12-584] No ports matched 'clk'. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:21]
+CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports clk]'. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:21]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Vivado 12-627] No clocks matched 'D_CLK'. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:22]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:22]
+CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group [get_clocks D_CLK -include_generated_clocks]'. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:22]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group '. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:22]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+CRITICAL WARNING: [Constraints 18-4644] set_clock_groups: All clock groups specified are empty. Please specify atleast one clock group which is not empty. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:22]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+INFO: [Timing 38-2] Deriving generated clocks [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc:37]
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/example_ibert_ultrascale_gth_1.xdc]
+Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/ibert_ultrascale_gth_ip_example.xdc]
+Finished Parsing XDC File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/imports/ibert_ultrascale_gth_ip_example.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[0].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[10].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[11].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[12].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[13].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[14].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[15].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[1].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[2].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[3].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[4].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[5].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[6].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[7].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[8].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell u_ibert_gth_core/inst/QUAD[0].u_q/u_common/INTERNAL_MB.mcs_0/lmb_bram_I/RAM_Inst/Using_B36_S2.The_BRAMs[9].RAMB36_I1 has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3653.609 ; gain = 0.000 ; free physical = 12053 ; free virtual = 88852
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 165 instances were transformed.
+  DSP48E => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 8 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 81 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 4 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 72 instances
+
+30 Infos, 20 Warnings, 4 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 3653.609 ; gain = 1881.285 ; free physical = 12053 ; free virtual = 88852
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xczu6eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu6eg'
+INFO: [Common 17-1540] The version limit for your license is '2025.02' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for new releases.
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.59 . Memory (MB): peak = 3725.645 ; gain = 64.031 ; free physical = 12041 ; free virtual = 88840
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+Ending Cache Timing Information Task | Checksum: 1372a0adf
+
+Time (s): cpu = 00:00:00.91 ; elapsed = 00:00:00.33 . Memory (MB): peak = 3725.645 ; gain = 0.000 ; free physical = 12027 ; free virtual = 88827
+
+Starting Logic Optimization Task
+
+Phase 1 Generate And Synthesize Debug Cores
+INFO: [Chipscope 16-329] Generating Script for core instance : dbg_hub 
+INFO: [IP_Flow 19-3806] Processing IP xilinx.com:ip:xsdbm:3.0 for cell dbg_hub_CV.
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4001.238 ; gain = 0.000 ; free physical = 11687 ; free virtual = 88490
+Phase 1 Generate And Synthesize Debug Cores | Checksum: 13a509b60
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:49 . Memory (MB): peak = 4001.238 ; gain = 19.844 ; free physical = 11687 ; free virtual = 88490
+
+Phase 2 Retarget
+INFO: [Opt 31-138] Pushed 38 inverter(s) to 414 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 2 Retarget | Checksum: 2022196ab
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:50 . Memory (MB): peak = 4001.238 ; gain = 19.844 ; free physical = 11697 ; free virtual = 88500
+INFO: [Opt 31-389] Phase Retarget created 195 cells and removed 295 cells
+INFO: [Opt 31-1021] In phase Retarget, 47 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 3 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 3 Constant propagation | Checksum: 1a12b5b12
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:50 . Memory (MB): peak = 4001.238 ; gain = 19.844 ; free physical = 11698 ; free virtual = 88502
+INFO: [Opt 31-389] Phase Constant propagation created 325 cells and removed 679 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 47 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 Sweep
+Phase 4 Sweep | Checksum: 12ea2799e
+
+Time (s): cpu = 00:00:43 ; elapsed = 00:00:50 . Memory (MB): peak = 4001.238 ; gain = 19.844 ; free physical = 11707 ; free virtual = 88510
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 129 cells
+INFO: [Opt 31-1021] In phase Sweep, 2309 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 5 BUFG optimization
+INFO: [Opt 31-1077] Phase BUFG optimization inserted 0 global clock buffer(s) for CLOCK_LOW_FANOUT.
+Phase 5 BUFG optimization | Checksum: 12ea2799e
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:50 . Memory (MB): peak = 4001.238 ; gain = 19.844 ; free physical = 11710 ; free virtual = 88513
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 6 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 6 Shift Register Optimization | Checksum: 12ea2799e
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:50 . Memory (MB): peak = 4001.238 ; gain = 19.844 ; free physical = 11710 ; free virtual = 88513
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 7 Post Processing Netlist
+Phase 7 Post Processing Netlist | Checksum: 1fc58142d
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:50 . Memory (MB): peak = 4001.238 ; gain = 19.844 ; free physical = 11710 ; free virtual = 88513
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 63 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |             195  |             295  |                                             47  |
+|  Constant propagation         |             325  |             679  |                                             47  |
+|  Sweep                        |               0  |             129  |                                           2309  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                             63  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4001.238 ; gain = 0.000 ; free physical = 11710 ; free virtual = 88513
+Ending Logic Optimization Task | Checksum: 1e8bb0694
+
+Time (s): cpu = 00:00:44 ; elapsed = 00:00:51 . Memory (MB): peak = 4001.238 ; gain = 19.844 ; free physical = 11710 ; free virtual = 88513
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 20 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 0 newly gated: 0 Total Ports: 40
+Ending PowerOpt Patch Enables Task | Checksum: 1e8bb0694
+
+Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.09 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10862 ; free virtual = 87666
+Ending Power Optimization Task | Checksum: 1e8bb0694
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:10 . Memory (MB): peak = 5063.137 ; gain = 1061.898 ; free physical = 10898 ; free virtual = 87701
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 1e8bb0694
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10898 ; free virtual = 87701
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10898 ; free virtual = 87701
+Ending Netlist Obfuscation Task | Checksum: 1e8bb0694
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10898 ; free virtual = 87701
+INFO: [Common 17-83] Releasing license: Implementation
+64 Infos, 68 Warnings, 4 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:01:01 ; elapsed = 00:01:03 . Memory (MB): peak = 5063.137 ; gain = 1409.527 ; free physical = 10898 ; free virtual = 87701
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.28 ; elapsed = 00:00:00.06 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10874 ; free virtual = 87688
+INFO: [Common 17-1381] The checkpoint '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/example_ibert_ultrascale_gth_1_opt.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file example_ibert_ultrascale_gth_1_drc_opted.rpt -pb example_ibert_ultrascale_gth_1_drc_opted.pb -rpx example_ibert_ultrascale_gth_1_drc_opted.rpx
+Command: report_drc -file example_ibert_ultrascale_gth_1_drc_opted.rpt -pb example_ibert_ultrascale_gth_1_drc_opted.pb -rpx example_ibert_ultrascale_gth_1_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/example_ibert_ultrascale_gth_1_drc_opted.rpt.
+report_drc completed successfully
+INFO: [Chipscope 16-240] Debug cores have already been implemented
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xczu6eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu6eg'
+INFO: [Common 17-1540] The version limit for your license is '2025.02' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for new releases.
+Parsing TCL File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/tcl/quad_pblock.tcl] from IP /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.srcs/sources_1/ip/ibert_ultrascale_gth_1/ibert_ultrascale_gth_1.xci
+Sourcing Tcl File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/tcl/quad_pblock.tcl]
+INFO: [Vivado 12-3520] Assignment of 'QUAD[0].u_q' to a pblock 'pblock_u_ibert_gth_core/inst/QUAD[0].u_q' means that all children of 'u_ibert_gth_core' are in the pblock. Changing the pblock assignment to 'u_ibert_gth_core'. [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/tcl/quad_pblock.tcl:2]
+Finished Sourcing Tcl File [/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.gen/sources_1/ip/ibert_ultrascale_gth_1/tcl/quad_pblock.tcl]
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10799 ; free virtual = 87610
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 10d031408
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10799 ; free virtual = 87610
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10799 ; free virtual = 87610
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: f6bfdd0e
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10866 ; free virtual = 87678
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 1dc3a689e
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10874 ; free virtual = 87685
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 1dc3a689e
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10876 ; free virtual = 87687
+Phase 1 Placer Initialization | Checksum: 1dc3a689e
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10876 ; free virtual = 87687
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+
+Phase 2.1.1 Partition Driven Placement
+
+Phase 2.1.1.1 PBP: Partition Driven Placement
+Phase 2.1.1.1 PBP: Partition Driven Placement | Checksum: 1973acf60
+
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:05 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10922 ; free virtual = 87733
+
+Phase 2.1.1.2 PBP: Clock Region Placement
+Phase 2.1.1.2 PBP: Clock Region Placement | Checksum: 152815fa2
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:06 . Memory (MB): peak = 5063.137 ; gain = 0.000 ; free physical = 10922 ; free virtual = 87733
+
+Phase 2.1.1.3 PBP: Compute Congestion
+Phase 2.1.1.3 PBP: Compute Congestion | Checksum: 152815fa2
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:06 . Memory (MB): peak = 5085.543 ; gain = 22.406 ; free physical = 10821 ; free virtual = 87632
+
+Phase 2.1.1.4 PBP: UpdateTiming
+Phase 2.1.1.4 PBP: UpdateTiming | Checksum: 10a4ded4d
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 5115.559 ; gain = 52.422 ; free physical = 10822 ; free virtual = 87634
+
+Phase 2.1.1.5 PBP: Add part constraints
+Phase 2.1.1.5 PBP: Add part constraints | Checksum: 10a4ded4d
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 5115.559 ; gain = 52.422 ; free physical = 10822 ; free virtual = 87634
+Phase 2.1.1 Partition Driven Placement | Checksum: 10a4ded4d
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 5115.559 ; gain = 52.422 ; free physical = 10822 ; free virtual = 87634
+Phase 2.1 Floorplanning | Checksum: 10a4ded4d
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 5115.559 ; gain = 52.422 ; free physical = 10822 ; free virtual = 87634
+
+Phase 2.2 Update Timing before SLR Path Opt
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: 10a4ded4d
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 5115.559 ; gain = 52.422 ; free physical = 10822 ; free virtual = 87634
+
+Phase 2.3 Post-Processing in Floorplanning
+Phase 2.3 Post-Processing in Floorplanning | Checksum: 10a4ded4d
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 5115.559 ; gain = 52.422 ; free physical = 10822 ; free virtual = 87634
+
+Phase 2.4 Global Placement Core
+
+Phase 2.4.1 UpdateTiming Before Physical Synthesis
+Phase 2.4.1 UpdateTiming Before Physical Synthesis | Checksum: 125f75714
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:18 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10473 ; free virtual = 87284
+
+Phase 2.4.2 Physical Synthesis In Placer
+INFO: [Physopt 32-1035] Found 0 LUTNM shape to break, 786 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 0, two critical 0, total 0, new lutff created 0
+INFO: [Physopt 32-1138] End 1 Pass. Optimized 361 nets or LUTs. Breaked 0 LUT, combined 361 existing LUTs and moved 0 existing LUT
+INFO: [Physopt 32-69] No nets found for rewiring optimization.
+INFO: [Physopt 32-661] Optimized 0 net.  Re-placed 0 instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-670] No setup violation found.  DSP Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register to Pipeline Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  BRAM Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  URAM Register Optimization was not performed.
+INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10481 ; free virtual = 87292
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT Combining                                    |            0  |            361  |                   361  |           0  |           1  |  00:00:00  |
+|  Retime                                           |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Equivalent Driver Rewiring                       |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                                     |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register                                   |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  BRAM Register                                    |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  URAM Register                                    |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                                            |            0  |            361  |                   361  |           0  |           5  |  00:00:00  |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.4.2 Physical Synthesis In Placer | Checksum: 1b7f071e8
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:19 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10481 ; free virtual = 87292
+Phase 2.4 Global Placement Core | Checksum: ff560e03
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:20 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10393 ; free virtual = 87204
+Phase 2 Global Placement | Checksum: ff560e03
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:20 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10406 ; free virtual = 87217
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: dacdb554
+
+Time (s): cpu = 00:00:56 ; elapsed = 00:00:21 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10462 ; free virtual = 87273
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: d1385ba3
+
+Time (s): cpu = 00:00:57 ; elapsed = 00:00:21 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10461 ; free virtual = 87272
+
+Phase 3.3 Small Shape DP
+
+Phase 3.3.1 Small Shape Clustering
+Phase 3.3.1 Small Shape Clustering | Checksum: 122ae295b
+
+Time (s): cpu = 00:00:58 ; elapsed = 00:00:21 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10515 ; free virtual = 87327
+
+Phase 3.3.2 Flow Legalize Slice Clusters
+Phase 3.3.2 Flow Legalize Slice Clusters | Checksum: a43d39e6
+
+Time (s): cpu = 00:00:58 ; elapsed = 00:00:21 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10515 ; free virtual = 87327
+
+Phase 3.3.3 Slice Area Swap
+
+Phase 3.3.3.1 Slice Area Swap Initial
+Phase 3.3.3.1 Slice Area Swap Initial | Checksum: ed066dbe
+
+Time (s): cpu = 00:00:59 ; elapsed = 00:00:22 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10524 ; free virtual = 87335
+Phase 3.3.3 Slice Area Swap | Checksum: ed066dbe
+
+Time (s): cpu = 00:00:59 ; elapsed = 00:00:22 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10524 ; free virtual = 87335
+Phase 3.3 Small Shape DP | Checksum: a94fcc74
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:23 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10571 ; free virtual = 87382
+
+Phase 3.4 Re-assign LUT pins
+Phase 3.4 Re-assign LUT pins | Checksum: cc96cc50
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:24 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10570 ; free virtual = 87381
+
+Phase 3.5 Pipeline Register Optimization
+Phase 3.5 Pipeline Register Optimization | Checksum: 1169a48e3
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:24 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10570 ; free virtual = 87381
+Phase 3 Detail Placement | Checksum: 1169a48e3
+
+Time (s): cpu = 00:01:02 ; elapsed = 00:00:24 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10570 ; free virtual = 87381
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 11f5ec108
+
+Phase 4.1.1.1 BUFG Insertion
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 8 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=2.438 | TNS=0.000 |
+Phase 1 Physical Synthesis Initialization | Checksum: 1698e4ebc
+
+Time (s): cpu = 00:00:00.5 ; elapsed = 00:00:00.13 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10819 ; free virtual = 87630
+INFO: [Place 46-56] BUFG insertion identified 0 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to Illegal Netlist: 0.
+Ending Physical Synthesis Task | Checksum: 19d453677
+
+Time (s): cpu = 00:00:00.58 ; elapsed = 00:00:00.21 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10819 ; free virtual = 87630
+Phase 4.1.1.1 BUFG Insertion | Checksum: 11f5ec108
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:27 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10819 ; free virtual = 87630
+
+Phase 4.1.1.2 Post Placement Timing Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=2.438. For the most accurate timing information please run report_timing.
+Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: 1586e35a2
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:27 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10819 ; free virtual = 87630
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:27 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10819 ; free virtual = 87630
+Phase 4.1 Post Commit Optimization | Checksum: 1586e35a2
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:27 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10819 ; free virtual = 87630
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10901 ; free virtual = 87713
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 1ccab242b
+
+Time (s): cpu = 00:01:14 ; elapsed = 00:00:31 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10901 ; free virtual = 87713
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Print Estimated Congestion
+INFO: [Place 30-612] Post-Placement Estimated Congestion 
+ ________________________________________________________________________
+|           | Global Congestion | Long Congestion   | Short Congestion  |
+| Direction | Region Size       | Region Size       | Region Size       |
+|___________|___________________|___________________|___________________|
+|      North|                1x1|                1x1|                1x1|
+|___________|___________________|___________________|___________________|
+|      South|                1x1|                1x1|                1x1|
+|___________|___________________|___________________|___________________|
+|       East|                1x1|                1x1|                4x4|
+|___________|___________________|___________________|___________________|
+|       West|                1x1|                1x1|                4x4|
+|___________|___________________|___________________|___________________|
+
+Phase 4.3.1 Print Estimated Congestion | Checksum: 1ccab242b
+
+Time (s): cpu = 00:01:14 ; elapsed = 00:00:31 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10901 ; free virtual = 87713
+Phase 4.3 Placer Reporting | Checksum: 1ccab242b
+
+Time (s): cpu = 00:01:14 ; elapsed = 00:00:31 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10901 ; free virtual = 87713
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10901 ; free virtual = 87713
+
+Time (s): cpu = 00:01:14 ; elapsed = 00:00:31 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10901 ; free virtual = 87713
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 26abf3b2f
+
+Time (s): cpu = 00:01:14 ; elapsed = 00:00:31 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10901 ; free virtual = 87713
+Ending Placer Task | Checksum: 1d3de4978
+
+Time (s): cpu = 00:01:14 ; elapsed = 00:00:31 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10901 ; free virtual = 87713
+INFO: [Common 17-83] Releasing license: Implementation
+105 Infos, 100 Warnings, 4 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:01:17 ; elapsed = 00:00:32 . Memory (MB): peak = 5123.562 ; gain = 60.426 ; free physical = 10966 ; free virtual = 87777
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.81 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10956 ; free virtual = 87800
+INFO: [Common 17-1381] The checkpoint '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/example_ibert_ultrascale_gth_1_placed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_io -file example_ibert_ultrascale_gth_1_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00.12 ; elapsed = 00:00:00.2 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10947 ; free virtual = 87769
+INFO: [runtcl-4] Executing : report_utilization -file example_ibert_ultrascale_gth_1_utilization_placed.rpt -pb example_ibert_ultrascale_gth_1_utilization_placed.pb
+INFO: [runtcl-4] Executing : report_control_sets -verbose -file example_ibert_ultrascale_gth_1_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.15 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10968 ; free virtual = 87790
+Command: phys_opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xczu6eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu6eg'
+INFO: [Common 17-1540] The version limit for your license is '2025.02' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for new releases.
+
+Starting Initial Update Timing Task
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10971 ; free virtual = 87793
+INFO: [Vivado_Tcl 4-383] Design worst setup slack (WNS) is greater than or equal to 0.000 ns. Skipping all physical synthesis optimizations.
+INFO: [Vivado_Tcl 4-232] No setup violation found. The netlist was not modified.
+INFO: [Common 17-83] Releasing license: Implementation
+115 Infos, 100 Warnings, 4 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.8 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10954 ; free virtual = 87810
+INFO: [Common 17-1381] The checkpoint '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/example_ibert_ultrascale_gth_1_physopt.dcp' has been generated.
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xczu6eg'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu6eg'
+INFO: [Common 17-1540] The version limit for your license is '2025.02' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for new releases.
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: 918864d8 ConstDB: 0 ShapeSum: ce18f617 RouteDB: 743cee89
+Nodegraph reading from file.  Time (s): cpu = 00:00:00.3 ; elapsed = 00:00:00.33 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10803 ; free virtual = 87636
+Post Restoration Checksum: NetGraph: f02cffa1 NumContArr: 77ad681e Constraints: eb392375 Timing: 0
+Phase 1 Build RT Design | Checksum: 253138b34
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10871 ; free virtual = 87703
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 253138b34
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10871 ; free virtual = 87703
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 253138b34
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:04 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10871 ; free virtual = 87703
+
+Phase 2.3 Global Clock Net Routing
+ Number of Nodes with overlaps = 0
+Phase 2.3 Global Clock Net Routing | Checksum: 25cab53fa
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:05 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10753 ; free virtual = 87585
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 30fca1a97
+
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:06 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10763 ; free virtual = 87596
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=2.466  | TNS=0.000  | WHS=-0.110 | THS=-9.233 |
+
+
+Phase 2.5 Update Timing for Bus Skew
+
+Phase 2.5.1 Update Timing
+Phase 2.5.1 Update Timing | Checksum: 2de75ba01
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:07 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10761 ; free virtual = 87594
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=2.466  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 2.5 Update Timing for Bus Skew | Checksum: 2be45488a
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:07 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10761 ; free virtual = 87594
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.000725934 %
+  Global Horizontal Routing Utilization  = 0.000165739 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 25697
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 22482
+  Number of Partially Routed Nets     = 3215
+  Number of Node Overlaps             = 0
+
+Phase 2 Router Initialization | Checksum: 23aad39d2
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:08 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10717 ; free virtual = 87550
+
+Phase 3 Initial Routing
+
+Phase 3.1 Global Routing
+Phase 3.1 Global Routing | Checksum: 23aad39d2
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:08 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10717 ; free virtual = 87550
+Phase 3 Initial Routing | Checksum: 1306a1f4e
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:09 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10733 ; free virtual = 87566
+
+Phase 4 Initial Routing Verification
+
+Post Initial-Routing Verification
+---------------------------------
+CRITICAL WARNING: [Route 35-54] Net: gth_qrefclk0_i is not completely routed.
+Resolution: Run report_route_status for more information.
+INFO: [Route 35-3320] Number of nets that did not attempt to route: 5448
+
+Unroutable connection Types: 
+----------------------------
+Checking all reachable nodes within 5 hops of driver and load 
+
+Unroute Type 1 : Site pin does not reach interconnect fabric
+
+	Type 1GTHE4_COMMON.MGTREFCLK0->PLL.CLKIN]
+	-----Num Open nets: 1
+	-----Representative Net: Net[1746] gth_qrefclk0_i
+	-----GTHE4_COMMON_X0Y1/MGTREFCLK0 -> PLL_X0Y6/CLKIN
+	-----Driver Term: u_buf_gth_q1_clk0/O Load Term [9875]: sys_clk/inst/plle4_adv_inst/CLKIN
+	Driver Pin does not reach Interconnect fabric within 5 hops.
+	Load Pin does not reach Interconnect fabric within 5 hops 
+	Pins Reached within 5 hops from Driver
+	GTHE4_CHANNEL_X0Y6/MGTREFCLK0 Net on Pin: gth_qrefclk0_i  Net Driver: GTHE4_COMMON_X0Y1/MGTREFCLK0
+	GTHE4_CHANNEL_X0Y7/MGTREFCLK0 Net on Pin: gth_qrefclk0_i  Net Driver: GTHE4_COMMON_X0Y1/MGTREFCLK0
+	GTHE4_CHANNEL_X0Y5/MGTREFCLK0 Net on Pin: gth_qrefclk0_i  Net Driver: GTHE4_COMMON_X0Y1/MGTREFCLK0
+	GTHE4_CHANNEL_X0Y4/MGTREFCLK0 Net on Pin: gth_qrefclk0_i  Net Driver: GTHE4_COMMON_X0Y1/MGTREFCLK0
+	GTHE4_COMMON_X0Y1/COM0_REFCLKOUT0 Net on Pin: gth_qrefclk0_i  Net Driver: GTHE4_COMMON_X0Y1/MGTREFCLK0
+	GTHE4_COMMON_X0Y1/COM2_REFCLKOUT0 Net on Pin: gth_qrefclk0_i  Net Driver: GTHE4_COMMON_X0Y1/MGTREFCLK0
+	GTHE4_CHANNEL_X0Y10/NORTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y11/NORTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y9/NORTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y8/NORTHREFCLK0 Net on Pin: 
+	GTHE4_COMMON_X0Y2/COM0_REFCLKOUT2 Net on Pin: 
+	GTHE4_COMMON_X0Y2/COM2_REFCLKOUT2 Net on Pin: 
+	GTHE4_CHANNEL_X0Y10/NORTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y11/NORTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y9/NORTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y8/NORTHREFCLK1 Net on Pin: 
+	GTHE4_COMMON_X0Y2/COM0_REFCLKOUT3 Net on Pin: 
+	GTHE4_COMMON_X0Y2/COM2_REFCLKOUT3 Net on Pin: 
+	GTHE4_CHANNEL_X0Y2/SOUTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y3/SOUTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y1/SOUTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y0/SOUTHREFCLK0 Net on Pin: 
+	GTHE4_COMMON_X0Y0/COM0_REFCLKOUT4 Net on Pin: 
+	GTHE4_COMMON_X0Y0/COM2_REFCLKOUT4 Net on Pin: 
+	GTHE4_CHANNEL_X0Y2/SOUTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y3/SOUTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y1/SOUTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y0/SOUTHREFCLK1 Net on Pin: 
+	GTHE4_COMMON_X0Y0/COM0_REFCLKOUT5 Net on Pin: 
+	GTHE4_COMMON_X0Y0/COM2_REFCLKOUT5 Net on Pin: 
+	GTHE4_CHANNEL_X0Y14/NORTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y15/NORTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y13/NORTHREFCLK0 Net on Pin: 
+	GTHE4_CHANNEL_X0Y12/NORTHREFCLK0 Net on Pin: 
+	GTHE4_COMMON_X0Y3/COM0_REFCLKOUT2 Net on Pin: 
+	GTHE4_COMMON_X0Y3/COM2_REFCLKOUT2 Net on Pin: 
+	GTHE4_CHANNEL_X0Y14/NORTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y15/NORTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y13/NORTHREFCLK1 Net on Pin: 
+	GTHE4_CHANNEL_X0Y12/NORTHREFCLK1 Net on Pin: 
+	GTHE4_COMMON_X0Y3/COM0_REFCLKOUT3 Net on Pin: 
+	GTHE4_COMMON_X0Y3/COM2_REFCLKOUT3 Net on Pin: 
+	Pins Reached within 5 hops from Load
+	BITSLICE_RX_TX_X0Y201/PHY2CLB_FIFO_WRCLK Net on Pin: 
+	BITSLICE_RX_TX_X0Y195/PHY2CLB_FIFO_WRCLK Net on Pin: 
+	BITSLICE_RX_TX_X0Y188/PHY2CLB_FIFO_WRCLK Net on Pin: 
+	BITSLICE_RX_TX_X0Y182/PHY2CLB_FIFO_WRCLK Net on Pin: 
+	BITSLICE_RX_TX_X0Y175/PHY2CLB_FIFO_WRCLK Net on Pin: 
+	BITSLICE_RX_TX_X0Y169/PHY2CLB_FIFO_WRCLK Net on Pin: 
+	BITSLICE_RX_TX_X0Y162/PHY2CLB_FIFO_WRCLK Net on Pin: 
+	BITSLICE_RX_TX_X0Y156/PHY2CLB_FIFO_WRCLK Net on Pin: 
+	IOB_X1Y182/I Net on Pin: 
+	IOB_X1Y184/I Net on Pin: 
+	IOB_X1Y177/I Net on Pin: 
+	IOB_X1Y179/I Net on Pin: 
+	MMCM_X0Y3/CLKOUT0 Net on Pin: dbg_hub/inst/BSCANID.u_xsdbm_id/USE_DIVIDER.dclk_mmcm  Net Driver: MMCM_X0Y3/CLKOUT0
+	MMCM_X0Y3/CLKOUT1 Net on Pin: 
+	MMCM_X0Y3/CLKOUT2 Net on Pin: 
+	MMCM_X0Y3/CLKOUT3 Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X0Y3/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y2/CLK_OUT Net on Pin: 
+	BUFGCE_HDIO_X1Y3/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y12/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y13/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y14/CLK_OUT Net on Pin: 
+	BUFGCE_DIV_X0Y15/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y24/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y25/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y26/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y27/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y28/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y29/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y30/CLK_OUT Net on Pin: 
+	BUFGCTRL_X0Y31/CLK_OUT Net on Pin: 
+Phase 4 Initial Routing Verification | Checksum: 1306a1f4e
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:09 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10733 ; free virtual = 87566
+
+Phase 5 Rip-up And Reroute
+
+Phase 5.1 Global Iteration 0
+ Number of Nodes with overlaps = 4738
+ Number of Nodes with overlaps = 424
+ Number of Nodes with overlaps = 18
+ Number of Nodes with overlaps = 4
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=2.023  | TNS=0.000  | WHS=0.001  | THS=0.000  |
+
+Phase 5.1 Global Iteration 0 | Checksum: 337cf3f44
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:16 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10820 ; free virtual = 87653
+
+Phase 5.2 Additional Iteration for Hold
+Phase 5.2 Additional Iteration for Hold | Checksum: 2943381fc
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:16 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10820 ; free virtual = 87652
+Phase 5 Rip-up And Reroute | Checksum: 2943381fc
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:16 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10820 ; free virtual = 87652
+
+Phase 6 Delay and Skew Optimization
+
+Phase 6.1 Delay CleanUp
+Phase 6.1 Delay CleanUp | Checksum: 2ddbbbfb9
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:16 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10824 ; free virtual = 87657
+
+Phase 6.2 Clock Skew Optimization
+Phase 6.2 Clock Skew Optimization | Checksum: 2ddbbbfb9
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:17 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10824 ; free virtual = 87657
+Phase 6 Delay and Skew Optimization | Checksum: 2ddbbbfb9
+
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:17 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10824 ; free virtual = 87657
+
+Phase 7 Post Hold Fix
+
+Phase 7.1 Hold Fix Iter
+
+Phase 7.1.1 Update Timing
+Phase 7.1.1 Update Timing | Checksum: 2c2a7fa85
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:17 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10819 ; free virtual = 87651
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=2.023  | TNS=0.000  | WHS=0.001  | THS=0.000  |
+
+Phase 7.1 Hold Fix Iter | Checksum: 2cb409979
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:17 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10819 ; free virtual = 87651
+Phase 7 Post Hold Fix | Checksum: 2cb409979
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:17 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10819 ; free virtual = 87651
+
+Phase 8 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.80007 %
+  Global Horizontal Routing Utilization  = 1.3735 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 1
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 1
+  Number of Node Overlaps             = 0
+
+Phase 8 Route finalize | Checksum: 38e02cb01
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:18 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10821 ; free virtual = 87654
+
+Phase 9 Verifying routed nets
+CRITICAL WARNING: [Route 35-54] Net: gth_qrefclk0_i is not completely routed.
+Resolution: Run report_route_status for more information.
+CRITICAL WARNING: [Route 35-7] Design has 1 unroutable pin, potentially caused by placement issue or user provided physical constraints.
+Resolution: Please check if the unroute is caused by an incorrect physical constraint on the driver/load pair of the unrouted net. If so, please remove or modify the constraint and re-run placer.
+
+ Verification failed
+Phase 9 Verifying routed nets | Checksum: 38e02cb01
+
+Time (s): cpu = 00:00:45 ; elapsed = 00:00:18 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10821 ; free virtual = 87654
+CRITICAL WARNING: [Route 35-1] Design is not completely routed. There is  1  net that is not completely routed.
+
+Phase 10 Depositing Routes
+Phase 10 Depositing Routes | Checksum: 38e02cb01
+
+Time (s): cpu = 00:00:46 ; elapsed = 00:00:18 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10831 ; free virtual = 87663
+INFO: [Route 35-77] Router completed with failures. Please check the log file for Critical Warnings and run report_route_status for a summary of routing status.
+
+Time (s): cpu = 00:00:46 ; elapsed = 00:00:18 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10921 ; free virtual = 87754
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+130 Infos, 100 Warnings, 8 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:19 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10921 ; free virtual = 87754
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.93 . Memory (MB): peak = 5123.562 ; gain = 0.000 ; free physical = 10913 ; free virtual = 87784
+INFO: [Common 17-1381] The checkpoint '/home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/example_ibert_ultrascale_gth_1_routed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file example_ibert_ultrascale_gth_1_drc_routed.rpt -pb example_ibert_ultrascale_gth_1_drc_routed.pb -rpx example_ibert_ultrascale_gth_1_drc_routed.rpx
+Command: report_drc -file example_ibert_ultrascale_gth_1_drc_routed.rpt -pb example_ibert_ultrascale_gth_1_drc_routed.pb -rpx example_ibert_ultrascale_gth_1_drc_routed.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/example_ibert_ultrascale_gth_1_drc_routed.rpt.
+report_drc completed successfully
+INFO: [runtcl-4] Executing : report_methodology -file example_ibert_ultrascale_gth_1_methodology_drc_routed.rpt -pb example_ibert_ultrascale_gth_1_methodology_drc_routed.pb -rpx example_ibert_ultrascale_gth_1_methodology_drc_routed.rpx
+Command: report_methodology -file example_ibert_ultrascale_gth_1_methodology_drc_routed.rpt -pb example_ibert_ultrascale_gth_1_methodology_drc_routed.pb -rpx example_ibert_ultrascale_gth_1_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+INFO: [DRC 23-133] Running Methodology with 8 threads
+INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file /home/bouthsarath/ibert_ultrascale_gth_1_ex/ibert_ultrascale_gth_1_ex.runs/impl_1/example_ibert_ultrascale_gth_1_methodology_drc_routed.rpt.
+report_methodology completed successfully
+INFO: [runtcl-4] Executing : report_power -file example_ibert_ultrascale_gth_1_power_routed.rpt -pb example_ibert_ultrascale_gth_1_power_summary_routed.pb -rpx example_ibert_ultrascale_gth_1_power_routed.rpx
+Command: report_power -file example_ibert_ultrascale_gth_1_power_routed.rpt -pb example_ibert_ultrascale_gth_1_power_summary_routed.pb -rpx example_ibert_ultrascale_gth_1_power_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/rx_ind.u_rxusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr0_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr1_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr2_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_0' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+WARNING: [Timing 38-252] The BUFG_GT instance 'u_ibert_gth_core/inst/QUAD[0].u_q/u_common/u_clocking/tx_ind.u_txusr3_1' has DIV pins that are not constant, so the automatically derived generated clock will use a worst case divide of 1.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+142 Infos, 132 Warnings, 8 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [runtcl-4] Executing : report_route_status -file example_ibert_ultrascale_gth_1_route_status.rpt -pb example_ibert_ultrascale_gth_1_route_status.pb
+INFO: [runtcl-4] Executing : report_timing_summary -max_paths 10 -report_unconstrained -file example_ibert_ultrascale_gth_1_timing_summary_routed.rpt -pb example_ibert_ultrascale_gth_1_timing_summary_routed.pb -rpx example_ibert_ultrascale_gth_1_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+INFO: [runtcl-4] Executing : report_incremental_reuse -file example_ibert_ultrascale_gth_1_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
+INFO: [runtcl-4] Executing : report_clock_utilization -file example_ibert_ultrascale_gth_1_clock_utilization_routed.rpt
+INFO: [runtcl-4] Executing : report_bus_skew -warn_on_violation -file example_ibert_ultrascale_gth_1_bus_skew_routed.rpt -pb example_ibert_ultrascale_gth_1_bus_skew_routed.pb -rpx example_ibert_ultrascale_gth_1_bus_skew_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Common 17-206] Exiting Vivado at Mon Mar 17 10:43:35 2025...
