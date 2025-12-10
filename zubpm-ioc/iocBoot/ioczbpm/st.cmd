@@ -8,9 +8,9 @@
 #- everywhere it appears in this file
 
 #< envPaths
-epicsEnvSet("PX","C28dev{BPM:2}")
+epicsEnvSet("PX","DFE{BPM:2}")
 
-epicsEnvSet("IOCNAME", "C28dev")
+epicsEnvSet("IOCNAME", "DFE")
 epicsEnvSet("ALIVELEN", "8000");   # ADC Live length
 epicsEnvSet("TLIVELEN", "8000");   # ADC Live length
 epicsEnvSet("ALEN",500000);        # ADC DMA Length
@@ -22,7 +22,7 @@ dbLoadDatabase "../../dbd/zbpm.dbd"
 zbpm_registerRecordDeviceDriver(pdbbase) 
 
 # BPM IP address
-epicsEnvSet("ZBPM_IP", "10.0.142.49");  #4030
+epicsEnvSet("ZBPM_IP", "10.0.142.193");  #4030
 
 ## Load record instances
 dbLoadRecords("../../db/zubpm.db", "P=$(IOCNAME), NO=2, ADC_LIVE_WFM_LEN=$(ALIVELEN), ADC_WFM_LEN=$(ALEN), TBT_LIVE_WFM_LEN=$(TLIVELEN), TBT_WFM_LEN=$(TLEN), SAVG_N=100, SAVG_NSAM=100")
