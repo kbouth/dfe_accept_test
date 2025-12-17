@@ -26,7 +26,7 @@ epicsEnvSet("ZBPM_IP", "10.0.142.193");  #4030
 
 ## Load record instances
 dbLoadRecords("../../db/zubpm.db", "P=$(IOCNAME), NO=2, ADC_LIVE_WFM_LEN=$(ALIVELEN), ADC_WFM_LEN=$(ALEN), TBT_LIVE_WFM_LEN=$(TLIVELEN), TBT_WFM_LEN=$(TLEN), SAVG_N=100, SAVG_NSAM=100")
-#dbLoadRecords("../../db/Live.db", "P=$(IOCNAME), NO=2, ALIVE=$(ALIVELEN), TLIVE=$(TLIVELEN)")
+dbLoadRecords("../../db/Live.db", "P=$(IOCNAME), NO=2, ALIVE=$(ALIVELEN), TLIVE=$(TLIVELEN)")
 dbLoadRecords("../../db/FA.db", "P=$(IOCNAME), NO=2, FA_LEN=$(FLEN)")
 dbLoadRecords("../../db/TBT.db", "P=$(IOCNAME), NO=2, TBT_LEN=$(TLEN)")
 dbLoadRecords("../../db/ADC.db", "P=$(IOCNAME), NO=2, ADC_LEN=$(ALEN)")
