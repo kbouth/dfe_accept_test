@@ -1,5 +1,4 @@
 connect -url tcp:10.0.142.173:3121
-source /tools/Xilinx/Vitis/2022.2/scripts/vitis/util/zynqmp_utils.tcl
 targets -set -nocase -filter {name =~"APU*"}
 rst -system
 after 3000
