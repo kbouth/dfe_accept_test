@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-08-08 08:15:41 by diag-->
 <display version="2.0.0">
   <name>zuLive</name>
   <width>1150</width>
@@ -1385,9 +1384,9 @@
       <name>Action Button_21</name>
       <actions>
         <action type="open_display">
+          <description>Open Display</description>
           <file>zuSystem.bob</file>
           <target>replace</target>
-          <description>Open Display</description>
         </action>
       </actions>
       <text>System</text>
@@ -1411,9 +1410,9 @@
       <name>Action Button_22</name>
       <actions>
         <action type="open_display">
+          <description>Open Display</description>
           <file>zuSA.bob</file>
           <target>replace</target>
-          <description>Open Display</description>
         </action>
       </actions>
       <text>SA</text>
@@ -1453,9 +1452,9 @@
       <name>Action Button_23</name>
       <actions>
         <action type="open_display">
+          <description>Open Display</description>
           <file>zuFA.bob</file>
           <target>replace</target>
-          <description>Open Display</description>
         </action>
       </actions>
       <text>FA</text>
@@ -1495,9 +1494,9 @@
       <name>Action Button_24</name>
       <actions>
         <action type="open_display">
+          <description>Open Display</description>
           <file>zuTbT.bob</file>
           <target>replace</target>
-          <description>Open Display</description>
         </action>
       </actions>
       <text>TbT</text>
@@ -1537,9 +1536,9 @@
       <name>Action Button_27</name>
       <actions>
         <action type="open_display">
+          <description>Open Display</description>
           <file>zuADC.bob</file>
           <target>replace</target>
-          <description>Open Display</description>
         </action>
       </actions>
       <text>ADC</text>
@@ -1579,9 +1578,9 @@
       <name>Action Button_39</name>
       <actions>
         <action type="open_display">
+          <description>Open Display</description>
           <file>zuFFT.bob</file>
           <target>replace</target>
-          <description>Open Display</description>
         </action>
       </actions>
       <text>FFT</text>
@@ -1628,9 +1627,9 @@
       <name>Action Button_47</name>
       <actions>
         <action type="open_display">
+          <description>Open Display</description>
           <file>zuTemp.bob</file>
           <target>replace</target>
-          <description>Open Display</description>
         </action>
       </actions>
       <text>Temp</text>
@@ -1706,9 +1705,9 @@
     <name>Action Button_26</name>
     <actions execute_as_one="true">
       <action type="write_pv">
+        <description>WritePV</description>
         <pv_name>$(P){BPM:$(NO)}RFSW:Enable-SP</pv_name>
         <value>1</value>
-        <description>WritePV</description>
       </action>
     </actions>
     <text>X</text>
@@ -1741,9 +1740,9 @@
     <name>Action Button_28</name>
     <actions execute_as_one="true">
       <action type="write_pv">
+        <description>WritePV</description>
         <pv_name>$(P){BPM:$(NO)}RFSW:Enable-SP</pv_name>
         <value>0</value>
-        <description>WritePV</description>
       </action>
     </actions>
     <text>S</text>
@@ -1877,9 +1876,9 @@
     <name>Action Button_29</name>
     <actions execute_as_one="true">
       <action type="write_pv">
+        <description>WritePV</description>
         <pv_name>$(P){BPM:$(NO)}RFSW:Enable-SP</pv_name>
         <value>2</value>
-        <description>WritePV</description>
       </action>
     </actions>
     <text>RF</text>

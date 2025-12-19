@@ -12,7 +12,7 @@
     <actions>
       <action type="open_display">
         <description>Open Display</description>
-        <file>zuSA.bob</file>
+        <file>zuSystem.bob</file>
         <macros>
           <P>DFE</P>
           <NO>2</NO>
