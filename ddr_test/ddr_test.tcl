@@ -3,7 +3,14 @@ set SCRIPT_DIR [file dirname [file normalize [info script]]]
 
 puts "Running from: $SCRIPT_DIR"
 
-connect -url tcp:10.0.142.173:3121
+# Read JTAG IP from shared config file
+set CFG_FILE [file join $SCRIPT_DIR .. jtag_ip.cfg]
+set fp [open $CFG_FILE r]
+set JTAG_IP [string trim [read $fp]]
+close $fp
+puts "Connecting to JTAG: $JTAG_IP"
+
+connect -url tcp:${JTAG_IP}:3121
 
 targets -set -nocase -filter {name =~ "APU*"}
 rst -system
