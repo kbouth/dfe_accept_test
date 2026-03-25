@@ -1,0 +1,3 @@
+[submodule "ibert_dfe"]
+	path = ibert_dfe
+	url = git@github.com:kbouth/ibert_dfe.git
