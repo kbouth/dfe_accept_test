@@ -9,6 +9,7 @@ import pyvisa
 # ----------------------------- Configuration -----------------------------
 SERIAL_HOST = "10.0.142.108"
 SERIAL_PORT = 4027
+SMB100B_IP = "10.0.142.183"
 
 LOG_DIR = "./logs"
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -719,7 +720,7 @@ def io_test(bd_num, tn):
 def afe_test(bd_num, tn):
     global DDR_FPGA_PROGRAMMED, NOR_FPGA_PROGRAMMED, STRESS_FPGA_PROGRAMMED
 
-    SMB100B_RESOURCE = "TCPIP0::10.0.142.183::inst0::INSTR"
+    SMB100B_RESOURCE = f"TCPIP0::{SMB100B_IP}::inst0::INSTR"
     
     # Timing
     SETTLE_TIME_SEC = 10.0

@@ -82,8 +82,16 @@ class TestGUI:
         self.serial_port.grid(row=2, column=3, padx=(0, 4), pady=3, sticky="w")
         self.serial_port.insert(0, str(dfe_test.SERIAL_PORT))
 
+        tk.Label(control_frame, text="SMB100B IP").grid(
+            row=3, column=0, padx=(0, 8), pady=3, sticky="w"
+        )
+
+        self.smb100b_ip = tk.Entry(control_frame, width=18)
+        self.smb100b_ip.grid(row=3, column=1, padx=(0, 8), pady=3, sticky="ew")
+        self.smb100b_ip.insert(0, dfe_test.SMB100B_IP)
+
         tk.Label(control_frame, textvariable=self.ip_address_var).grid(
-            row=3, column=0, columnspan=4, padx=(0, 0), pady=3, sticky="w"
+            row=4, column=0, columnspan=4, padx=(0, 0), pady=3, sticky="w"
         )
 
         # ---------- Buttons + Status Lights (Aligned) ----------
@@ -391,9 +399,14 @@ class TestGUI:
     def _apply_serial_settings(self):
         host = self.serial_host.get().strip()
         port_text = self.serial_port.get().strip()
+        smb100b_ip = self.smb100b_ip.get().strip()
 
         if not host:
             self.append_log("ERROR: Serial host cannot be empty\n")
+            return False
+
+        if not smb100b_ip:
+            self.append_log("ERROR: SMB100B IP cannot be empty\n")
             return False
 
         try:
@@ -404,6 +417,7 @@ class TestGUI:
 
         dfe_test.SERIAL_HOST = host
         dfe_test.SERIAL_PORT = port
+        dfe_test.SMB100B_IP = smb100b_ip
         return True
 
     # --------------------------------------------------
