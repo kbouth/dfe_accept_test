@@ -2,6 +2,27 @@
 set -e
 set -o pipefail
 
+# --------------------------------------------------
+# Source Xilinx Vitis environment
+# --------------------------------------------------
+VITIS_SETTINGS="/tools/Xilinx/Vitis/2022.2/settings64.sh"
+
+if [[ -f "$VITIS_SETTINGS" ]]; then
+  source "$VITIS_SETTINGS"
+else
+  echo "ERROR: Vitis settings file not found at $VITIS_SETTINGS"
+  exit 1
+fi
+
+# Optional sanity check
+if ! command -v program_flash >/dev/null 2>&1; then
+  echo "ERROR: program_flash not found even after sourcing Vitis environment"
+  exit 1
+fi
+
+# --------------------------------------------------
+# Existing script logic
+# --------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CFG_FILE="${SCRIPT_DIR}/../jtag_ip.cfg"
 
