@@ -101,7 +101,7 @@ class TestGUI:
 
         self.status = {}
 
-        buttons = ["DDR","TEMP","IP","IBERT","SD","QSPI","IO","AFE","STRESS"]
+        buttons = ["QSPI","SD","IP","TEMP","IO","DDR","IBERT","AFE","STRESS"]
 
         for i, name in enumerate(buttons):
 
@@ -130,8 +130,8 @@ class TestGUI:
 
         columns = (
             "Board",
-            "DDR", "TEMP", "IP", "IBERT",
-            "SD", "QSPI", "IO", "AFE", "STRESS",
+            "QSPI", "SD", "IP", "TEMP",
+            "IO", "DDR", "IBERT", "AFE", "STRESS",
             "ZYNQ_IP", "Overall", "Date", "Time"
         )
 
@@ -250,13 +250,13 @@ class TestGUI:
                 # Restore table
                 vals = (
                     row["Board"],
-                    row["DDR"],
-                    row["TEMP"],
-                    row["IP"],
-                    row["IBERT"],
-                    row["SD"],
                     row["QSPI"],
+                    row["SD"],
+                    row["IP"],
+                    row["TEMP"],
                     row["IO"],
+                    row["DDR"],
+                    row["IBERT"],
                     row["AFE"],
                     row["STRESS"],
                     row.get("ZYNQ_IP", "-"),
@@ -280,8 +280,8 @@ class TestGUI:
 
             writer.writerow([
                 "Board",
-                "DDR", "TEMP", "IP", "IBERT",
-                "SD", "QSPI", "IO", "AFE", "STRESS",
+                "QSPI", "SD", "IP", "TEMP",
+                "IO", "DDR", "IBERT", "AFE", "STRESS",
                 "ZYNQ_IP", "Overall", "Date", "Time"
             ])
 
@@ -328,7 +328,7 @@ class TestGUI:
                 return "-"
             return "PASS" if v else "FAIL"
 
-        tests = [ddr, temp, ip, ibert, sd, qspi, io, afe, stress]
+        tests = [qspi, sd, ip, temp, io, ddr, ibert, afe, stress]
         
         overall = (
             "PASS"
@@ -345,13 +345,13 @@ class TestGUI:
 
         vals = (
             board,
-            fmt(ddr),
-            fmt(temp),
-            fmt(ip),
-            fmt(ibert),
-            fmt(sd),
             fmt(qspi),
+            fmt(sd),
+            fmt(ip),
+            fmt(temp),
             fmt(io),
+            fmt(ddr),
+            fmt(ibert),
             fmt(afe),
             fmt(stress),
             zynq_ip,
@@ -492,33 +492,33 @@ class TestGUI:
         tn = dfe_test.open_telnet()
 
         try:
-            ddr = dfe_test.ddr_test(bd, tn)
-            self.results.setdefault(bd, {})["DDR"] = ddr
-            self.set_status("DDR", ddr)
-
-            temp = dfe_test.temp_test(bd, tn)
-            self.results.setdefault(bd, {})["TEMP"] = temp
-            self.set_status("TEMP", temp)
-
-            ip = dfe_test.ip_test(bd, tn)
-            self.results.setdefault(bd, {})["IP"] = ip
-            self.set_status("IP", ip)
-
-            ibert = dfe_test.ibert_test(bd, tn)
-            self.results.setdefault(bd, {})["IBERT"] = ibert
-            self.set_status("IBERT", ibert)
+            qspi = dfe_test.qspi_test(bd, tn)
+            self.results.setdefault(bd, {})["QSPI"] = qspi
+            self.set_status("QSPI", qspi)
 
             sd = dfe_test.sd_test(bd, tn)
             self.results.setdefault(bd, {})["SD"] = sd
             self.set_status("SD", sd)
 
-            qspi = dfe_test.qspi_test(bd, tn)
-            self.results.setdefault(bd, {})["QSPI"] = qspi
-            self.set_status("QSPI", qspi)
+            ip = dfe_test.ip_test(bd, tn)
+            self.results.setdefault(bd, {})["IP"] = ip
+            self.set_status("IP", ip)
+
+            temp = dfe_test.temp_test(bd, tn)
+            self.results.setdefault(bd, {})["TEMP"] = temp
+            self.set_status("TEMP", temp)
 
             io = dfe_test.io_test(bd, tn)
             self.results.setdefault(bd, {})["IO"] = io
             self.set_status("IO", io)
+
+            ddr = dfe_test.ddr_test(bd, tn)
+            self.results.setdefault(bd, {})["DDR"] = ddr
+            self.set_status("DDR", ddr)
+
+            ibert = dfe_test.ibert_test(bd, tn)
+            self.results.setdefault(bd, {})["IBERT"] = ibert
+            self.set_status("IBERT", ibert)
 
             afe = dfe_test.afe_test(bd, tn)
             self.results.setdefault(bd, {})["AFE"] = afe
@@ -1150,8 +1150,16 @@ class TestGUI:
     def afe_pwr_confirmation(self, pwr):
         done = threading.Event()
         result = {"value": False}
+        dbm0 = ["20","28"]
+        dbm12 = ["60","68"]
 
         def show_popup():
+            
+            dbm = []
+            if pwr == 0:
+                dbm = dbm0
+            elif pwr == 12:
+                dbm = dbm12
 
             win = tk.Toplevel(self.root)
             win.title("AFE Test Confirmation")
@@ -1160,7 +1168,7 @@ class TestGUI:
 
             tk.Label(
                 win,
-                text=f"Power = {pwr} dBm. Determine if channels changed levels.",
+                text=f"Power = {pwr} dBm. Determine if channels measure between {dbm[0]} and {dbm[1]}.",
                 font=("Arial", 12),
                 wraplength=400,
                 justify="center"

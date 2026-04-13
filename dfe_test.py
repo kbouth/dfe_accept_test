@@ -601,43 +601,14 @@ def ibert_test(bd_num, tn):
 
     ibert_dir = "./ibert_dfe"
     fwkProject = os.path.join(ibert_dir, "fwkProject_gen.txt")
+    vivado_bin = "/tools/Xilinx/Vivado/2022.2/bin/vivado"
 
     try:
-
-        
-        env = os.environ.copy()
-        env["FWK_VIVADO_JOBS"] = "16"
-
-        if not os.path.exists(fwkProject):
-            try: 
-                subprocess.run(
-                    ["make", "cfg=hw", "project"],
-                    cwd=ibert_dir,
-                    check=True
-                )
-
-                time.sleep(2)  # small delay to ensure build is fully done
-
-                subprocess.run(
-                    ["make", "cfg=hw", "build"],
-                    cwd=ibert_dir,
-                    env=env,
-                    check=True
-                )
-
-                time.sleep(2) 
-
-                with open(fwkProject, "a") as f:
-                    f.write("SUCCESS\n")
-
-            except subprocess.CalledProcessError:
-                print("ERROR: IBERT project build failed")
-                return False
 
         write_log(log_file, "Programming FPGA... Please wait a minute...\n")
         
         subprocess.run([
-        "vivado",
+        vivado_bin,
         "-mode", "batch",
         "-source", "program_ibert.tcl"],
           cwd=ibert_dir,
@@ -648,12 +619,13 @@ def ibert_test(bd_num, tn):
         print("Programming done")
 
         subprocess.Popen(
-            [
-                "xterm",
-                "-hold",
-                "-e",
-                f"cd {ibert_dir} && make cfg=hw gui"
-            ]
+            [vivado_bin, "-mode", "gui"],
+            cwd=ibert_dir,
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True,
+            close_fds=True,
         )
  
 
@@ -813,14 +785,22 @@ def afe_test(bd_num, tn):
             gen.set_power_dbm(0.0)
             gen.output_on()
 
+            dbm0 = ["20","28"]
+            dbm12 = ["60","68"]
+
             Pass = True
             for pwr in powers:
+                dbm = []
+                if pwr == 0:
+                    dbm = dbm0
+                elif pwr == 12:
+                    dbm = dbm12
                 print(f"\nSetting SMB100B power to {pwr:.1f} dBm")
                 gen.set_power_dbm(pwr)
                 time.sleep(SETTLE_TIME_SEC)
 
 
-                confirm = input("Determine if channels changed levels. (y/n): ").strip().lower()
+                confirm = input(f"Power = {pwr} dBm. Determine if channels measure between {dbm[0]} and {dbm[1]}.").strip().lower()
                 if confirm == "y":
                     print("Confirmed channels changed levels.")
                 else:
