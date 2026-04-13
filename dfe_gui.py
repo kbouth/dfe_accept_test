@@ -101,7 +101,7 @@ class TestGUI:
 
         self.status = {}
 
-        buttons = ["QSPI","SD","IP","TEMP","IO","DDR","IBERT","AFE","STRESS"]
+        buttons = ["QSPI","SD","IP","TEMP","IO","IBERT","DDR","AFE","STRESS"]
 
         for i, name in enumerate(buttons):
 
@@ -131,7 +131,7 @@ class TestGUI:
         columns = (
             "Board",
             "QSPI", "SD", "IP", "TEMP",
-            "IO", "DDR", "IBERT", "AFE", "STRESS",
+            "IO", "IBERT", "DDR", "AFE", "STRESS",
             "ZYNQ_IP", "Overall", "Date", "Time"
         )
 
@@ -255,8 +255,8 @@ class TestGUI:
                     row["IP"],
                     row["TEMP"],
                     row["IO"],
-                    row["DDR"],
                     row["IBERT"],
+                    row["DDR"],
                     row["AFE"],
                     row["STRESS"],
                     row.get("ZYNQ_IP", "-"),
@@ -281,7 +281,7 @@ class TestGUI:
             writer.writerow([
                 "Board",
                 "QSPI", "SD", "IP", "TEMP",
-                "IO", "DDR", "IBERT", "AFE", "STRESS",
+                "IO", "IBERT", "DDR", "AFE", "STRESS",
                 "ZYNQ_IP", "Overall", "Date", "Time"
             ])
 
@@ -328,7 +328,7 @@ class TestGUI:
                 return "-"
             return "PASS" if v else "FAIL"
 
-        tests = [qspi, sd, ip, temp, io, ddr, ibert, afe, stress]
+        tests = [qspi, sd, ip, temp, io, ibert, ddr, afe, stress]
         
         overall = (
             "PASS"
@@ -350,8 +350,8 @@ class TestGUI:
             fmt(ip),
             fmt(temp),
             fmt(io),
-            fmt(ddr),
             fmt(ibert),
+            fmt(ddr),
             fmt(afe),
             fmt(stress),
             zynq_ip,
@@ -512,13 +512,13 @@ class TestGUI:
             self.results.setdefault(bd, {})["IO"] = io
             self.set_status("IO", io)
 
-            ddr = dfe_test.ddr_test(bd, tn)
-            self.results.setdefault(bd, {})["DDR"] = ddr
-            self.set_status("DDR", ddr)
-
             ibert = dfe_test.ibert_test(bd, tn)
             self.results.setdefault(bd, {})["IBERT"] = ibert
             self.set_status("IBERT", ibert)
+
+            ddr = dfe_test.ddr_test(bd, tn)
+            self.results.setdefault(bd, {})["DDR"] = ddr
+            self.set_status("DDR", ddr)
 
             afe = dfe_test.afe_test(bd, tn)
             self.results.setdefault(bd, {})["AFE"] = afe
