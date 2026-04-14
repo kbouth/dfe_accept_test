@@ -777,8 +777,8 @@ class TestGUI:
         result = {"value": False}
 
         steps = [
-            "Insert the SD Card into the empty SD slot (SW1).",
-            "Set BOOT Mode () to SD (0101).",
+            "Insert the SD Card into the empty SD slot.",
+            "Set BOOT Mode (SW1) to SD (0101).",
             "Power cycle the FPGA. Press close to continue."
         ]
 
@@ -886,7 +886,7 @@ class TestGUI:
         result = {"value": False}
 
         steps = [
-            "Switch BOOT Mode to QSPI (0001).",
+            "Switch BOOT Mode (SW1) to QSPI (0001).",
             "Power cycle the FPGA. Press close to continue."
         ]
 
@@ -1002,7 +1002,7 @@ class TestGUI:
 
             tk.Label(
                 win,
-                text="Measure pins with multimeter. Are all pins outputting 1.8 V correctly?",
+                text="Measure debug pins 17-20 (J4) with multimeter. Are all debug pins measuring 1.8 V? Are LEDs (D7) turning one by one?",
                 font=("Arial", 12),
                 wraplength=400,
                 justify="center"
@@ -1044,7 +1044,6 @@ class TestGUI:
         steps = [
             "Start IOC and open Phoebus GUI.",
             "Set RF Attenuation to 0 dB in Phoebus.",
-            "Set Trigger source to External and Event Source to EVR in Phoebus.",
             "View the SA Waveform Data in Phoebus."
         ]
 
@@ -1150,8 +1149,8 @@ class TestGUI:
     def afe_pwr_confirmation(self, pwr):
         done = threading.Event()
         result = {"value": False}
-        dbm0 = ["20","28"]
-        dbm12 = ["60","68"]
+        dbm0 = ["20","30"]
+        dbm12 = ["60","70"]
 
         def show_popup():
             
@@ -1168,7 +1167,7 @@ class TestGUI:
 
             tk.Label(
                 win,
-                text=f"Power = {pwr} dBm. Determine if channels measure between {dbm[0]} and {dbm[1]}.",
+                text=f"Power = {pwr} dBm. Determine if channels A to D measure an average between {dbm[0]} and {dbm[1]}.",
                 font=("Arial", 12),
                 wraplength=400,
                 justify="center"
