@@ -6,6 +6,7 @@ import time
 from datetime import datetime
 import csv
 import os
+import configparser
 
 import dfe_test
 
@@ -16,10 +17,15 @@ class TestGUI:
         root.title("ZuDFE Test Station")
 
         self.data_file = "test_results.csv"
+        self.settings_file = os.path.join(os.path.dirname(__file__), "dfe_settings.cfg")
         self.previous_board = None  # Track board changes to reset FPGA state
         self.active_board = None
         self.ip_address = ""
         self.ip_address_var = tk.StringVar(value="ZYNQ+ IP:         -")
+        self.settings = self._load_settings()
+        self._apply_runtime_settings()
+        if not os.path.exists(self.settings_file):
+            self._save_settings()
         # ---------- Main Layout Frames ----------
 
         top_frame = tk.Frame(root, pady=5)
@@ -53,45 +59,13 @@ class TestGUI:
             command=self.run_all
         ).grid(row=0, column=2, padx=(0, 4), pady=3, sticky="w")
 
-        tk.Label(control_frame, text="JTAG IP").grid(
-            row=1, column=0, padx=(0, 8), pady=3, sticky="w"
-        )
-
-        self.jtag_ip = tk.Entry(control_frame, width=18)
-        self.jtag_ip.grid(row=1, column=1, padx=(0, 8), pady=3, sticky="ew")
-        self._load_jtag_ip()
-
         tk.Button(
-            control_frame, text="Save IP", width=10,
-            command=self._save_jtag_ip
-        ).grid(row=1, column=2, padx=(0, 4), pady=3, sticky="w")
-
-        tk.Label(control_frame, text="Serial Host").grid(
-            row=2, column=0, padx=(0, 8), pady=3, sticky="w"
-        )
-
-        self.serial_host = tk.Entry(control_frame, width=18)
-        self.serial_host.grid(row=2, column=1, padx=(0, 8), pady=3, sticky="ew")
-        self.serial_host.insert(0, dfe_test.SERIAL_HOST)
-
-        tk.Label(control_frame, text="Serial Port").grid(
-            row=2, column=2, padx=(8, 8), pady=3, sticky="w"
-        )
-
-        self.serial_port = tk.Entry(control_frame, width=8)
-        self.serial_port.grid(row=2, column=3, padx=(0, 4), pady=3, sticky="w")
-        self.serial_port.insert(0, str(dfe_test.SERIAL_PORT))
-
-        tk.Label(control_frame, text="SMB100B IP").grid(
-            row=3, column=0, padx=(0, 8), pady=3, sticky="w"
-        )
-
-        self.smb100b_ip = tk.Entry(control_frame, width=18)
-        self.smb100b_ip.grid(row=3, column=1, padx=(0, 8), pady=3, sticky="ew")
-        self.smb100b_ip.insert(0, dfe_test.SMB100B_IP)
+            control_frame, text="Settings", width=10,
+            command=self.open_settings
+        ).grid(row=0, column=3, padx=(0, 4), pady=3, sticky="w")
 
         tk.Label(control_frame, textvariable=self.ip_address_var).grid(
-            row=4, column=0, columnspan=4, padx=(0, 0), pady=3, sticky="w"
+            row=1, column=0, columnspan=4, padx=(0, 0), pady=3, sticky="w"
         )
 
         # ---------- Buttons + Status Lights (Aligned) ----------
@@ -101,7 +75,7 @@ class TestGUI:
 
         self.status = {}
 
-        buttons = ["QSPI","SD","IP","TEMP","IO","IBERT","DDR","AFE","STRESS"]
+        buttons = ["QSPI", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
 
         for i, name in enumerate(buttons):
 
@@ -131,7 +105,7 @@ class TestGUI:
         columns = (
             "Board",
             "QSPI", "SD", "IP", "TEMP",
-            "IO", "IBERT", "DDR", "AFE", "STRESS",
+            "IO", "AFE", "STRESS", "IBERT", "DDR",
             "ZYNQ_IP", "Overall", "Date", "Time"
         )
 
@@ -192,7 +166,6 @@ class TestGUI:
         dfe_test.qspi_callback = self.qspi_confirmation
         dfe_test.io_callback = self.io_confirmation
         dfe_test.afe_callback = self.afe_confirmation
-        dfe_test.afe_pwr_callback = self.afe_pwr_confirmation
         dfe_test.stress_callback = self.stress_confirmation
 
 
@@ -255,10 +228,10 @@ class TestGUI:
                     row["IP"],
                     row["TEMP"],
                     row["IO"],
-                    row["IBERT"],
-                    row["DDR"],
                     row["AFE"],
                     row["STRESS"],
+                    row["IBERT"],
+                    row["DDR"],
                     row.get("ZYNQ_IP", "-"),
                     row["Overall"],
                     row["Date"],
@@ -281,7 +254,7 @@ class TestGUI:
             writer.writerow([
                 "Board",
                 "QSPI", "SD", "IP", "TEMP",
-                "IO", "IBERT", "DDR", "AFE", "STRESS",
+                "IO", "AFE", "STRESS", "IBERT", "DDR",
                 "ZYNQ_IP", "Overall", "Date", "Time"
             ])
 
@@ -328,7 +301,7 @@ class TestGUI:
                 return "-"
             return "PASS" if v else "FAIL"
 
-        tests = [qspi, sd, ip, temp, io, ibert, ddr, afe, stress]
+        tests = [qspi, sd, ip, temp, io, afe, stress, ibert, ddr]
         
         overall = (
             "PASS"
@@ -350,10 +323,10 @@ class TestGUI:
             fmt(ip),
             fmt(temp),
             fmt(io),
-            fmt(ibert),
-            fmt(ddr),
             fmt(afe),
             fmt(stress),
+            fmt(ibert),
+            fmt(ddr),
             zynq_ip,
             overall,
             date,
@@ -378,35 +351,74 @@ class TestGUI:
 
     # --------------------------------------------------
 
-    def _load_jtag_ip(self):
-        cfg = os.path.join(os.path.dirname(__file__), "jtag_ip.cfg")
-        if os.path.exists(cfg):
-            with open(cfg) as f:
-                ip = f.read().strip()
-            self.jtag_ip.delete(0, tk.END)
-            self.jtag_ip.insert(0, ip)
+    def _load_settings(self):
+        settings = {
+            "jtag_ip": "",
+            "serial_host": dfe_test.SERIAL_HOST,
+            "serial_port": str(dfe_test.SERIAL_PORT),
+            "vivado_bin": dfe_test.VIVADO_BIN,
+            "xsct_bin": dfe_test.XSCT_BIN,
+            "vitis_settings": dfe_test.VITIS_SETTINGS,
+        }
 
-    def _save_jtag_ip(self):
-        ip = self.jtag_ip.get().strip()
-        if not ip:
-            messagebox.showerror("Error", "JTAG IP address cannot be empty.")
-            return
-        cfg = os.path.join(os.path.dirname(__file__), "jtag_ip.cfg")
-        with open(cfg, "w") as f:
-            f.write(ip)
-        self.append_log(f"JTAG IP saved: {ip}\n")
+        parser = configparser.ConfigParser()
+        if os.path.exists(self.settings_file):
+            parser.read(self.settings_file)
+            settings["jtag_ip"] = parser.get("network", "jtag_ip", fallback=settings["jtag_ip"])
+            settings["serial_host"] = parser.get("network", "serial_host", fallback=settings["serial_host"])
+            settings["serial_port"] = parser.get("network", "serial_port", fallback=settings["serial_port"])
+            settings["vivado_bin"] = parser.get("tools", "vivado_bin", fallback=settings["vivado_bin"])
+            settings["xsct_bin"] = parser.get("tools", "xsct_bin", fallback=settings["xsct_bin"])
+            settings["vitis_settings"] = parser.get("tools", "vitis_settings", fallback=settings["vitis_settings"])
 
-    def _apply_serial_settings(self):
-        host = self.serial_host.get().strip()
-        port_text = self.serial_port.get().strip()
-        smb100b_ip = self.smb100b_ip.get().strip()
+        legacy_jtag_cfg = os.path.join(os.path.dirname(__file__), "jtag_ip.cfg")
+        if (not settings["jtag_ip"]) and os.path.exists(legacy_jtag_cfg):
+            with open(legacy_jtag_cfg) as f:
+                settings["jtag_ip"] = f.read().strip()
+
+        return settings
+
+    def _save_settings(self):
+        parser = configparser.ConfigParser()
+        parser["network"] = {
+            "jtag_ip": self.settings["jtag_ip"],
+            "serial_host": self.settings["serial_host"],
+            "serial_port": self.settings["serial_port"],
+        }
+        parser["tools"] = {
+            "vivado_bin": self.settings["vivado_bin"],
+            "xsct_bin": self.settings["xsct_bin"],
+            "vitis_settings": self.settings["vitis_settings"],
+        }
+        with open(self.settings_file, "w") as f:
+            parser.write(f)
+
+        # Keep legacy file for existing scripts that read only jtag_ip.cfg.
+        legacy_jtag_cfg = os.path.join(os.path.dirname(__file__), "jtag_ip.cfg")
+        with open(legacy_jtag_cfg, "w") as f:
+            f.write(self.settings["jtag_ip"])
+
+    def _apply_runtime_settings(self):
+        host = self.settings["serial_host"].strip()
+        port_text = self.settings["serial_port"].strip()
+        vivado_bin = self.settings["vivado_bin"].strip()
+        xsct_bin = self.settings["xsct_bin"].strip()
+        vitis_settings = self.settings["vitis_settings"].strip()
 
         if not host:
             self.append_log("ERROR: Serial host cannot be empty\n")
             return False
 
-        if not smb100b_ip:
-            self.append_log("ERROR: SMB100B IP cannot be empty\n")
+        if not vivado_bin:
+            self.append_log("ERROR: Vivado path cannot be empty\n")
+            return False
+
+        if not xsct_bin:
+            self.append_log("ERROR: XSCT path cannot be empty\n")
+            return False
+
+        if not vitis_settings:
+            self.append_log("ERROR: Vitis settings path cannot be empty\n")
             return False
 
         try:
@@ -417,8 +429,74 @@ class TestGUI:
 
         dfe_test.SERIAL_HOST = host
         dfe_test.SERIAL_PORT = port
-        dfe_test.SMB100B_IP = smb100b_ip
+        dfe_test.VIVADO_BIN = vivado_bin
+        dfe_test.XSCT_BIN = xsct_bin
+        dfe_test.VITIS_SETTINGS = vitis_settings
         return True
+
+    def open_settings(self):
+        win = tk.Toplevel(self.root)
+        win.title("Settings")
+        win.grab_set()
+        win.resizable(False, False)
+
+        frm = tk.Frame(win, padx=12, pady=12)
+        frm.pack(fill="both", expand=True)
+
+        tk.Label(frm, text="JTAG IP").grid(row=0, column=0, sticky="w", pady=4)
+        jtag_entry = tk.Entry(frm, width=48)
+        jtag_entry.grid(row=0, column=1, sticky="ew", pady=4)
+        jtag_entry.insert(0, self.settings["jtag_ip"])
+
+        tk.Label(frm, text="Serial Host").grid(row=1, column=0, sticky="w", pady=4)
+        host_entry = tk.Entry(frm, width=48)
+        host_entry.grid(row=1, column=1, sticky="ew", pady=4)
+        host_entry.insert(0, self.settings["serial_host"])
+
+        tk.Label(frm, text="Serial Port").grid(row=2, column=0, sticky="w", pady=4)
+        port_entry = tk.Entry(frm, width=48)
+        port_entry.grid(row=2, column=1, sticky="ew", pady=4)
+        port_entry.insert(0, self.settings["serial_port"])
+
+        tk.Label(frm, text="Vivado Path").grid(row=3, column=0, sticky="w", pady=4)
+        vivado_entry = tk.Entry(frm, width=48)
+        vivado_entry.grid(row=3, column=1, sticky="ew", pady=4)
+        vivado_entry.insert(0, self.settings["vivado_bin"])
+
+        tk.Label(frm, text="XSCT Path").grid(row=4, column=0, sticky="w", pady=4)
+        xsct_entry = tk.Entry(frm, width=48)
+        xsct_entry.grid(row=4, column=1, sticky="ew", pady=4)
+        xsct_entry.insert(0, self.settings["xsct_bin"])
+
+        tk.Label(frm, text="Vitis settings64.sh").grid(row=5, column=0, sticky="w", pady=4)
+        vitis_settings_entry = tk.Entry(frm, width=48)
+        vitis_settings_entry.grid(row=5, column=1, sticky="ew", pady=4)
+        vitis_settings_entry.insert(0, self.settings["vitis_settings"])
+
+        frm.grid_columnconfigure(1, weight=1)
+
+        btns = tk.Frame(frm)
+        btns.grid(row=6, column=0, columnspan=2, sticky="e", pady=(10, 0))
+
+        def save_and_close():
+            self.settings = {
+                "jtag_ip": jtag_entry.get().strip(),
+                "serial_host": host_entry.get().strip(),
+                "serial_port": port_entry.get().strip(),
+                "vivado_bin": vivado_entry.get().strip(),
+                "xsct_bin": xsct_entry.get().strip(),
+                "vitis_settings": vitis_settings_entry.get().strip(),
+            }
+
+            if not self._apply_runtime_settings():
+                return
+
+            self._save_settings()
+            self.append_log("Settings saved to dfe_settings.cfg\n")
+            win.destroy()
+
+        tk.Button(btns, text="Cancel", width=10, command=win.destroy).pack(side="right", padx=(8, 0))
+        tk.Button(btns, text="Save", width=10, command=save_and_close).pack(side="right")
 
     # --------------------------------------------------
 
@@ -437,7 +515,7 @@ class TestGUI:
             self.append_log("ERROR: Enter board number\n")
             return None
 
-        if not self._apply_serial_settings():
+        if not self._apply_runtime_settings():
             return None
 
         # Reset FPGA programming state only if board number changed
@@ -512,14 +590,6 @@ class TestGUI:
             self.results.setdefault(bd, {})["IO"] = io
             self.set_status("IO", io)
 
-            ibert = dfe_test.ibert_test(bd, tn)
-            self.results.setdefault(bd, {})["IBERT"] = ibert
-            self.set_status("IBERT", ibert)
-
-            ddr = dfe_test.ddr_test(bd, tn)
-            self.results.setdefault(bd, {})["DDR"] = ddr
-            self.set_status("DDR", ddr)
-
             afe = dfe_test.afe_test(bd, tn)
             self.results.setdefault(bd, {})["AFE"] = afe
             self.set_status("AFE", afe)
@@ -527,6 +597,14 @@ class TestGUI:
             stress = dfe_test.stress_test(bd, tn)
             self.results.setdefault(bd, {})["STRESS"] = stress
             self.set_status("STRESS", stress)
+
+            ibert = dfe_test.ibert_test(bd, tn)
+            self.results.setdefault(bd, {})["IBERT"] = ibert
+            self.set_status("IBERT", ibert)
+
+            ddr = dfe_test.ddr_test(bd, tn)
+            self.results.setdefault(bd, {})["DDR"] = ddr
+            self.set_status("DDR", ddr)
 
 
 
@@ -1037,20 +1115,18 @@ class TestGUI:
         return result["value"]
     
     def afe_confirmation(self):
+
         done = threading.Event()
         result = {"value": False}
 
-        # Build steps: first is "open Phoebus", then confirmation for each power level
         steps = [
-            "Start IOC and open Phoebus GUI.",
-            "Set RF Attenuation to 0 dB in Phoebus.",
-            "View the SA Waveform Data in Phoebus."
+            "Start the IOC. Press close to continue."
         ]
 
         def show_popup():
 
             win = tk.Toplevel(self.root)
-            win.title("AFE Test Setup")
+            win.title("AFE Test Wizard")
             win.grab_set()
             win.resizable(False, False)
 
@@ -1064,7 +1140,7 @@ class TestGUI:
 
             title_lbl = tk.Label(
                 win,
-                text="AFE Test Setup",
+                text="AFE Boot Step",
                 font=("Arial", 14, "bold")
             )
             title_lbl.pack(pady=8)
@@ -1087,41 +1163,13 @@ class TestGUI:
                 step_lbl.config(
                     text=f"Step {i+1} of {len(steps)}\n\n{steps[i]}"
                 )
+                    
+                close_btn.pack(side="right", padx=15)
 
-                back_btn["state"] = "normal" if i > 0 else "disabled"
-
-                if i == len(steps) - 1:
-                    next_btn.pack_forget()
-                    close_btn.pack(side="right", padx=15)
-                else:
-                    close_btn.pack_forget()
-                    next_btn.pack(side="right", padx=15)
-
-            def next_step():
-                step_index.set(step_index.get() + 1)
-                update_step()
-
-            def prev_step():
-                step_index.set(step_index.get() - 1)
-                update_step()
 
             def close():
                 done.set()
                 win.destroy()
-
-            back_btn = tk.Button(
-                nav_frame,
-                text="Back",
-                width=10,
-                command=prev_step
-            )
-
-            next_btn = tk.Button(
-                nav_frame,
-                text="Next",
-                width=10,
-                command=next_step
-            )
 
             close_btn = tk.Button(
                 nav_frame,
@@ -1131,8 +1179,6 @@ class TestGUI:
                 fg="black",
                 command=close
             )
-
-            back_btn.pack(side="left", padx=15)
 
             update_step()
 
@@ -1144,104 +1190,78 @@ class TestGUI:
         done.wait()
 
         return result["value"]
+
     
-
-    def afe_pwr_confirmation(self, pwr):
-        done = threading.Event()
-        result = {"value": False}
-        dbm0 = ["20","30"]
-        dbm12 = ["60","70"]
-
-        def show_popup():
-            
-            dbm = []
-            if pwr == 0:
-                dbm = dbm0
-            elif pwr == 12:
-                dbm = dbm12
-
-            win = tk.Toplevel(self.root)
-            win.title("AFE Test Confirmation")
-            win.grab_set()
-            win.resizable(False, False)
-
-            tk.Label(
-                win,
-                text=f"Power = {pwr} dBm. Determine if channels A to D measure an average between {dbm[0]} and {dbm[1]}.",
-                font=("Arial", 12),
-                wraplength=400,
-                justify="center"
-            ).pack(padx=20, pady=15)
-
-            btn_frame = tk.Frame(win)
-            btn_frame.pack(pady=10)
-
-            def yes():
-                result["value"] = "y"
-                done.set()
-                win.destroy()
-
-            def no():
-                result["value"] = "n"
-                done.set()
-                win.destroy()
-
-            tk.Button(
-                btn_frame, text="Yes", width=10, command=yes
-            ).pack(side="left", padx=10)
-
-            tk.Button(
-                btn_frame, text="No", width=10, command=no
-            ).pack(side="right", padx=10)
-
-        # Run popup in GUI thread
-        self.root.after(0, show_popup)
-
-        done.wait()
-
-        return result["value"]
-
     
     def stress_confirmation(self):
         
         done = threading.Event()
         result = {"value": False}
 
+        steps = [
+            "Start the IOC. Press close to continue."
+        ]
+
         def show_popup():
 
             win = tk.Toplevel(self.root)
-            win.title("Stress Test Confirmation")
+            win.title("Stress Test Wizard")
             win.grab_set()
             win.resizable(False, False)
 
-            tk.Label(
+            # Center window
+            w, h = 500, 220
+            x = (win.winfo_screenwidth() // 2) - (w // 2)
+            y = (win.winfo_screenheight() // 2) - (h // 2)
+            win.geometry(f"{w}x{h}+{x}+{y}")
+
+            step_index = tk.IntVar(value=0)
+
+            title_lbl = tk.Label(
                 win,
-                text="Open Phoebus GUI and determine if the current for 0.85V rail is above 5 Amps. (y/n):",
+                text="Stress Teset Step",
+                font=("Arial", 14, "bold")
+            )
+            title_lbl.pack(pady=8)
+
+            step_lbl = tk.Label(
+                win,
+                text="",
                 font=("Arial", 12),
-                wraplength=400,
+                wraplength=460,
                 justify="center"
-            ).pack(padx=20, pady=15)
+            )
+            step_lbl.pack(pady=20)
 
-            btn_frame = tk.Frame(win)
-            btn_frame.pack(pady=10)
+            nav_frame = tk.Frame(win)
+            nav_frame.pack(pady=10)
 
-            def yes():
-                result["value"] = "y"
+            def update_step():
+                i = step_index.get()
+
+                step_lbl.config(
+                    text=f"Step {i+1} of {len(steps)}\n\n{steps[i]}"
+                )
+                    
+                close_btn.pack(side="right", padx=15)
+
+
+            def close():
                 done.set()
                 win.destroy()
 
-            def no():
-                result["value"] = "n"
-                done.set()
-                win.destroy()
+            close_btn = tk.Button(
+                nav_frame,
+                text="Close",
+                width=10,
+                bg="#ACACAC",
+                fg="black",
+                command=close
+            )
 
-            tk.Button(
-                btn_frame, text="Yes", width=10, command=yes
-            ).pack(side="left", padx=10)
+            update_step()
 
-            tk.Button(
-                btn_frame, text="No", width=10, command=no
-            ).pack(side="right", padx=10)
+            win.protocol("WM_DELETE_WINDOW", close)
 
         # Run popup in GUI thread
         self.root.after(0, show_popup)

@@ -5,7 +5,7 @@ set -o pipefail
 # --------------------------------------------------
 # Source Xilinx Vitis environment
 # --------------------------------------------------
-VITIS_SETTINGS="/tools/Xilinx/Vitis/2022.2/settings64.sh"
+VITIS_SETTINGS="${VITIS_SETTINGS:-/tools/Xilinx/Vitis/2022.2/settings64.sh}"
 
 if [[ -f "$VITIS_SETTINGS" ]]; then
   source "$VITIS_SETTINGS"

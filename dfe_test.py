@@ -4,17 +4,44 @@ import sys
 import os
 import time
 import re
+import configparser
 import pyvisa
+import epics
 
 # ----------------------------- Configuration -----------------------------
 SERIAL_HOST = "10.0.142.108"
-SERIAL_PORT = 4027
-SMB100B_IP = "10.0.142.183"
+SERIAL_PORT = 4028
+XSCT_BIN = "/tools/Xilinx/Vitis/2022.2/bin/xsct"
+VIVADO_BIN = "/tools/Xilinx/Vivado/2022.2/bin/vivado"
+VITIS_SETTINGS = "/tools/Xilinx/Vitis/2022.2/settings64.sh"
+SETTINGS_FILE = os.path.join(os.path.dirname(__file__), "dfe_settings.cfg")
 
 LOG_DIR = "./logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
 DDR_TIMEOUT = 120  # seconds
+
+prefix ="DFE{BPM:2}"
+
+
+def load_runtime_config():
+    """Load optional runtime overrides from dfe_settings.cfg."""
+    global SERIAL_HOST, SERIAL_PORT, XSCT_BIN, VIVADO_BIN, VITIS_SETTINGS
+
+    if not os.path.exists(SETTINGS_FILE):
+        return
+
+    parser = configparser.ConfigParser()
+    parser.read(SETTINGS_FILE)
+
+    SERIAL_HOST = parser.get("network", "serial_host", fallback=SERIAL_HOST)
+    SERIAL_PORT = parser.getint("network", "serial_port", fallback=SERIAL_PORT)
+    XSCT_BIN = parser.get("tools", "xsct_bin", fallback=XSCT_BIN)
+    VIVADO_BIN = parser.get("tools", "vivado_bin", fallback=VIVADO_BIN)
+    VITIS_SETTINGS = parser.get("tools", "vitis_settings", fallback=VITIS_SETTINGS)
+
+
+load_runtime_config()
 
 #---------------------------- IP Ping Function --------------------------
 def ping_ip(ip, count=3, timeout=3):
@@ -36,7 +63,7 @@ def open_telnet():
     tn = pexpect.spawn(
         f"telnet {SERIAL_HOST} {SERIAL_PORT}",
         encoding="utf-8",
-        timeout=1
+        timeout=5
     )
     tn.sendline("")  # wake up console
     return tn
@@ -85,49 +112,12 @@ sd_callback = None
 qspi_callback = None
 io_callback = None
 afe_callback = None
-afe_pwr_callback = None
 stress_callback = None
 # --------------------------- Global Variables --------------------------
 DDR_FPGA_PROGRAMMED = False
 NOR_FPGA_PROGRAMMED = False
 STRESS_FPGA_PROGRAMMED = False
 
-class SMB100B:
-    def __init__(self, resource_name: str):
-        self.rm = pyvisa.ResourceManager()
-        self.inst = self.rm.open_resource(resource_name)
-        self.inst.timeout = 5000
-
-    def query(self, cmd: str) -> str:
-        return self.inst.query(cmd).strip()
-
-    def write(self, cmd: str) -> None:
-        self.inst.write(cmd)
-
-    def identify(self) -> str:
-        return self.query("*IDN?")
-
-    def reset(self) -> None:
-        self.write("*RST")
-        self.write("*CLS")
-
-    def set_frequency(self, freq_hz: float) -> None:
-        self.write(f"FREQ {freq_hz}")
-
-    def set_power_dbm(self, power_dbm: float) -> None:
-        self.write(f"POW {power_dbm}")
-
-    def output_on(self) -> None:
-        self.write("OUTP ON")
-
-    def output_off(self) -> None:
-        self.write("OUTP OFF")
-
-    def close(self) -> None:
-        try:
-            self.inst.close()
-        finally:
-            self.rm.close()
 # --------------------------- Logging Function --------------------------
 def write_log(log_file, text):
     print(text, end="")
@@ -218,9 +208,12 @@ def qspi_test(bd_num,tn):
             subprocess.run(
                             ["./flash_qspi.sh"],
                             cwd="./fpga_boot",
+                            env={**os.environ, "VITIS_SETTINGS": VITIS_SETTINGS},
                             check=True
                         )
             print("QSPI flash script completed")
+
+            os.makedirs(qspi_dir, exist_ok=True)
             with open(QSPIProject, "a") as f:
                     f.write("SUCCESS\n")
         except subprocess.CalledProcessError:
@@ -277,7 +270,7 @@ def ddr_test(bd_num,tn):
     flush_console(tn)
 
     VIVADO_CMD = [
-    "/tools/Xilinx/Vitis/2022.2/bin/xsct",
+    XSCT_BIN,
     "ddr_test/ddr_test.tcl"
     ]
 
@@ -412,7 +405,7 @@ def temp_test(bd_num,tn):
     write_log(log_file, f"\n=== Starting Temperature Test for Board {bd_num} ===\n")
     
     VIVADO_CMD = [
-    "/tools/Xilinx/Vitis/2022.2/bin/xsct",
+    XSCT_BIN,
     "fpga_boot/fpga_boot.tcl"
     ]
 
@@ -510,7 +503,7 @@ def ip_test(bd_num, tn):
     write_log(log_file, f"\n=== Starting IP Test for Board {bd_num} ===\n")
 
     VIVADO_CMD = [
-    "/tools/Xilinx/Vitis/2022.2/bin/xsct",
+    XSCT_BIN,
     "fpga_boot/fpga_boot.tcl"
     ]
 
@@ -601,7 +594,7 @@ def ibert_test(bd_num, tn):
 
     ibert_dir = "./ibert_dfe"
     fwkProject = os.path.join(ibert_dir, "fwkProject_gen.txt")
-    vivado_bin = "/tools/Xilinx/Vivado/2022.2/bin/vivado"
+    vivado_bin = VIVADO_BIN
 
     try:
 
@@ -661,7 +654,7 @@ def io_test(bd_num, tn):
     write_log(log_file, f"\n=== Starting IO Test for Board {bd_num} ===\n")
 
     VIVADO_CMD = [
-    "/tools/Xilinx/Vitis/2022.2/bin/xsct",
+    XSCT_BIN,
     "fpga_boot/fpga_boot.tcl"
     ]
 
@@ -692,129 +685,176 @@ def io_test(bd_num, tn):
 def afe_test(bd_num, tn):
     global DDR_FPGA_PROGRAMMED, NOR_FPGA_PROGRAMMED, STRESS_FPGA_PROGRAMMED
 
-    SMB100B_RESOURCE = f"TCPIP0::{SMB100B_IP}::inst0::INSTR"
-    
-    # Timing
-    SETTLE_TIME_SEC = 10.0
-    RF_OFF_AT_END = True
-    
+    ADCAPV = prefix + "Live:ADC:A-Wfm"
+    ADCBPV = prefix + "Live:ADC:B-Wfm"
+    ADCCPV = prefix + "Live:ADC:C-Wfm"
+    ADCDPV = prefix + "Live:ADC:D-Wfm"
+
+    mask = 0xFFFF
+
+    PATTERNA = False
+    PATTERN5 = False
+    skip = False
+
     flush_console(tn)
 
-    
     log_file = os.path.join(LOG_DIR, f"zudfe_s{bd_num}.log")
     print(f"\n=== Running AFE test on board {bd_num} ===")
     write_log(log_file, f"\n=== Starting AFE Test for Board {bd_num} ===\n")
 
     VIVADO_CMD = [
-    "/tools/Xilinx/Vitis/2022.2/bin/xsct",
+    XSCT_BIN,
     "fpga_boot/fpga_boot.tcl"
     ]
 
-    if not NOR_FPGA_PROGRAMMED:
-        # 1) Program FPGA
+    def send_menu_cmd(cmd):
+        tn.send(cmd)
+        # write_log(log_file, f">>> SENT MENU: {cmd}\n")
+
+    def send_input_cmd(cmd):
+        tn.sendline(cmd)
+        # write_log(log_file, f">>> SENT INPUT: {cmd}\n")
+
+    def wait_for_text(text, timeout=10):
+        idx = tn.expect_exact([text, pexpect.EOF, pexpect.TIMEOUT], timeout=timeout)
+        if idx == 0:
+            if tn.before:
+                write_log(log_file, tn.before)
+            write_log(log_file, tn.after)
+            return True
+        if idx == 1:
+            write_log(log_file, "\nERROR: AFE console closed unexpectedly\n")
+            return False
+        write_log(log_file, f"\nERROR: Timed out waiting for: {text}\n")
+        return False
+
+    if NOR_FPGA_PROGRAMMED:
+        write_log(log_file, "[PYTHON] FPGA already programmed, skipping boot wait for AFE test.\n")
+        skip = True
+    else:
         print("Programming FPGA...")
         try:
             subprocess.run(VIVADO_CMD, check=True)
         except subprocess.CalledProcessError:
             print("ERROR: FPGA programming failed")
             return False
+        skip = False
         DDR_FPGA_PROGRAMMED = False
-        NOR_FPGA_PROGRAMMED = True  
+        NOR_FPGA_PROGRAMMED = True
         STRESS_FPGA_PROGRAMMED = False
+        
+    if not skip:
+    # Wait for menu/banner to appear at least once after boot.
+        if not wait_for_text("FPGA successfully programmed", timeout=DDR_TIMEOUT):
+            return False
+
     
-    powers = [0, 12]
+    # Required command sequence:
+    # H -> b -> G -> aaaa -> G -> 5555 -> H -> a
+    mode_prompt = "Enter a or b (a = Normal Mode, b = Test Mode):"
 
-    gen = SMB100B(SMB100B_RESOURCE)
-
-    if NOR_FPGA_PROGRAMMED:
-        write_log(log_file, "[PYTHON] FPGA already programmed, skipping boot wait for AFE test.\n")
-    else:
-        start_time = time.time()
-        while True:
-            try:
-                line = tn.readline().strip()
-                if line:
-                    write_log(log_file, line + "\n")
-
-                if "FPGA successfully programmed" in line:
-                    break
-
-                if time.time() - start_time > DDR_TIMEOUT:
-                    write_log(log_file, "\nERROR: AFE boot wait timed out\n")
-                    return False
-
-            except pexpect.exceptions.TIMEOUT:
-                pass
-            except pexpect.exceptions.EOF:
-                write_log(log_file, "\nERROR: AFE console closed unexpectedly\n")
-                return False
-
-    time.sleep(5)
-    
     if afe_callback:
         response = afe_callback()
-        gen.set_frequency(200e6)
-        gen.set_power_dbm(0.0)
-        gen.output_on()
-
-        Pass = True
-        for pwr in powers:
-            print(f"\nSetting SMB100B power to {pwr:.1f} dBm")
-            gen.set_power_dbm(pwr)
-            time.sleep(SETTLE_TIME_SEC)
-
-
-            confirm = afe_pwr_callback(pwr)
-            if confirm == "y":
-                print("Confirmed channels changed levels.")
-            else:
-                Pass = False
-                print("Channels did NOT change levels. Check connections and settings.")
     else:
-            input("Start IOC and open Phoebus GUI. Press Enter to continue...")
-            input("Set RF Attenuation to 0 dB in Phoebus. Press Enter to continue...")
-            input("Set Trigger source to External and Event Source to EVR in Phoebus. Press Enter to continue...")
-            input("View the SA Waveform Data in Phoebus. Press Enter to continue...")
-            print("Connected to:", gen.identify())
+        input("\nStart IOC. Press Enter to continue...")
 
-            # Optional reset
-            # gen.reset()
-            # time.sleep(1)
+    
+    # Enter ADC output mode selector and choose Test Mode.
+    send_menu_cmd("H")
+    if not wait_for_text(mode_prompt, timeout=15):
+        return False
+    
+    time.sleep(3)
 
-            gen.set_frequency(200e6)
-            gen.set_power_dbm(0.0)
-            gen.output_on()
+    send_input_cmd("b")
+    if not wait_for_text("LTC2195 ADC Output set to Test Pattern Mode", timeout=15):
+        return False
 
-            dbm0 = ["20","28"]
-            dbm12 = ["60","68"]
+    time.sleep(3)
 
-            Pass = True
-            for pwr in powers:
-                dbm = []
-                if pwr == 0:
-                    dbm = dbm0
-                elif pwr == 12:
-                    dbm = dbm12
-                print(f"\nSetting SMB100B power to {pwr:.1f} dBm")
-                gen.set_power_dbm(pwr)
-                time.sleep(SETTLE_TIME_SEC)
+    # Pattern 1: AAAA
+    send_menu_cmd("G")
+    if not wait_for_text("Enter a test pattern (hex):", timeout=15):
+        return False
+    
+    time.sleep(3)
 
+    send_input_cmd("aaaa")
+    if not wait_for_text("ADC Test Readback done!", timeout=20):
+        return False
 
-                confirm = input(f"Power = {pwr} dBm. Determine if channels measure between {dbm[0]} and {dbm[1]}.").strip().lower()
-                if confirm == "y":
-                    print("Confirmed channels changed levels.")
-                else:
-                    Pass = False
-                    print("Channels did NOT change levels. Check connections and settings.")
-            
-    if RF_OFF_AT_END:
-        try:
-            gen.output_off()
-        except Exception:
-            pass
-    gen.close()
+    time.sleep(3)  # small delay to ensure EPICS PVs are updated before reading
 
-    if Pass:
+    dataA = epics.caget(ADCAPV, count=10)
+    dataB = epics.caget(ADCBPV, count=10)
+    dataC = epics.caget(ADCCPV, count=10)
+    dataD = epics.caget(ADCDPV, count=10)
+
+    A = hex(int(dataA[0]) & mask)
+    B = hex(int(dataB[0]) & mask)
+    C = hex(int(dataC[0]) & mask)
+    D = hex(int(dataD[0]) & mask)
+
+    write_log(log_file,"\nADC-A = " + A)
+    write_log(log_file,"\nADC-B = " + B)
+    write_log(log_file,"\nADC-C = " + C)
+    write_log(log_file,"\nADC-D = " + D)
+
+    if A == "0xaaaa" and B == "0xaaaa" and C == "0xaaaa" and D == "0xaaaa":
+        write_log(log_file, "\nPattern 1 (0xAAAA) readback correct\n")
+        PATTERNA = True
+    else:
+        write_log(log_file, "\nERROR: Pattern 1 (0xAAAA) readback incorrect\n")
+        
+
+    # Pattern 2: 5555
+    send_menu_cmd("G")
+    if not wait_for_text("Enter a test pattern (hex):", timeout=15):
+        return False
+    
+    time.sleep(3)
+
+    send_input_cmd("5555")
+    if not wait_for_text("ADC Test Readback done!", timeout=20):
+        return False
+
+    time.sleep(3) # small delay to ensure EPICS PVs are updated before reading
+
+    dataA = epics.caget(ADCAPV, count=10)
+    dataB = epics.caget(ADCBPV, count=10)
+    dataC = epics.caget(ADCCPV, count=10)
+    dataD = epics.caget(ADCDPV, count=10)
+
+    A = hex(int(dataA[0]) & mask)
+    B = hex(int(dataB[0]) & mask)
+    C = hex(int(dataC[0]) & mask)
+    D = hex(int(dataD[0]) & mask)
+
+    write_log(log_file,"\nADC-A = " + A)
+    write_log(log_file,"\nADC-B = " + B)
+    write_log(log_file,"\nADC-C = " + C)
+    write_log(log_file,"\nADC-D = " + D)
+
+    if A == "0x5555" and B == "0x5555" and C == "0x5555" and D == "0x5555":
+        write_log(log_file, "\nPattern 2 (0x5555) readback correct\n")
+        PATTERN5 = True
+    else:
+        write_log(log_file, "\nERROR: Pattern 2 (0x5555) readback incorrect\n")
+    
+    # Restore Normal Mode.
+    send_menu_cmd("H")
+    if not wait_for_text(mode_prompt, timeout=15):
+        return False
+    
+    time.sleep(3)
+
+    send_input_cmd("a")
+    if not wait_for_text("LTC2195 ADC Output set to Normal Output Mode", timeout=15):
+        return False
+
+    time.sleep(3)
+
+    if PATTERNA and PATTERN5:
         write_log(log_file, "\n=== AFE TEST PASS ===\n")
         return True
     else:
@@ -825,15 +865,17 @@ def stress_test(bd_num, tn):
     global DDR_FPGA_PROGRAMMED, NOR_FPGA_PROGRAMMED, STRESS_FPGA_PROGRAMMED
     flush_console(tn)
 
+    Prail_85PV = prefix + "Pwr:V0_85I-I"
     
     log_file = os.path.join(LOG_DIR, f"zudfe_s{bd_num}.log")
     print(f"\n=== Running Stress test on board {bd_num} ===")
     write_log(log_file, f"\n=== Starting Stress Test for Board {bd_num} ===\n")
 
     VIVADO_CMD = [
-    "/tools/Xilinx/Vitis/2022.2/bin/xsct",
+    XSCT_BIN,
     "stress_test/stress_test.tcl"
     ]
+
 
     if not STRESS_FPGA_PROGRAMMED:
         # 1) Program FPGA
@@ -850,66 +892,68 @@ def stress_test(bd_num, tn):
     if stress_callback:
         response = stress_callback()
     else:
-        response = input("Open Phoebus GUI and determine if the current for 0.85V rail is above 5 Amps. (y/n): ").strip().lower()
+        response = input("Start the IOC. Press Enter to continue...").strip().lower()
 
-    if response.strip().lower() == "y":
+    time.sleep(3)
+
+    current_prail85 = epics.caget(Prail_85PV, count=10)
+
+    write_log(log_file, f"\nCurrent on 0.85 Power Rail: {current_prail85} A\n")
+
+    if current_prail85 > 5.0:
+        write_log(log_file, "\nCurrent on 0.85 rail greater than 5 Amps under stress! Test pass.\n")
         write_log(log_file, "\n=== STRESS TEST PASS ===\n")
         return True
     else:
+        write_log(log_file, "\nCurrent on 0.85 rail did not increase under stress. Test fail.\n")
         write_log(log_file, "\n=== STRESS TEST FAIL ===\n")
         return False
 
 
+
+
 # ----------------------------- Main Function ----------------------------
 def main():
-    bd_num = input("Enter the board number: ").strip()
-    print(f"Board number entered: {bd_num}")
+    # bd_num = input("Enter the board number: ").strip()
+    # print(f"Board number entered: {bd_num}")
+    bd_num = "01"  # hardcoded for now since we only have one board, can re-enable input later when we have more boards to test
 
     log_file = os.path.join(LOG_DIR, f"zudfe_s{bd_num}.log")
     open(log_file, "w").close()  # clear previous log
 
     tn = open_telnet()
-    FAIL = False
+    results = {}
+
+    # Keep default behavior: run AFE only. Add other tests here when needed.
+    test_plan = [
+        ("AFE TEST", afe_test),
+    ]
 
     try:
-        # DDR_TEST = ddr_test(bd_num, tn)
-        # SD_TEST = sd_test(bd_num, tn)
-        # TEMP_TEST = temp_test(bd_num, tn)
-        # IP_TEST = ip_test(bd_num, tn)
-        # IBERT_TEST = ibert_test(bd_num, tn)
-        AFE_TEST = afe_test(bd_num, tn)
-        # STRESS_TEST = stress_test(bd_num, tn)
-
-
-        # if not DDR_TEST:
-        #     FAIL = True
-        # if not TEMP_TEST:
-        #     FAIL = True
-        # if not IP_TEST:
-        #     FAIL = True
-        # if not IBERT_TEST:
-        #     FAIL = True
-        if not AFE_TEST:
-            FAIL = True
-        # if not STRESS_TEST:
-        #     FAIL = True   
+        for test_name, test_fn in test_plan:
+            try:
+                results[test_name] = bool(test_fn(bd_num, tn))
+            except Exception as exc:
+                results[test_name] = False
+                write_log(log_file, f"\nERROR: {test_name} raised exception: {exc}\n")
     finally:
         print("Closing Telnet connection...")
         tn.close()
 
     print("\n===== TEST SUMMARY =====")
     print(f"Board Number : {bd_num}")
-    # print(f"DDR TEST     : {'PASS' if DDR_TEST else 'FAIL'}")
-    # print(f"TEMPERATURE TEST : {'PASS' if TEMP_TEST else 'FAIL'}")
-    # print(f"IP TEST      : {'PASS' if IP_TEST else 'FAIL'}")
-    # print(f"IBERT TEST    : {'PASS' if IBERT_TEST else 'FAIL'}")
 
-    if not FAIL:
+    for test_name, passed in results.items():
+        print(f"{test_name:<16}: {'PASS' if passed else 'FAIL'}")
+
+    fail = any(not passed for passed in results.values())
+
+    if not fail:
         print("\nALL TESTS PASSED!")
     else:
         print("\nSOME TESTS FAILED. PLEASE REVIEW THE LOGS.")
     
-    sys.exit(0 if not FAIL else 1)
+    sys.exit(0 if not fail else 1)
 
 
 # ----------------------------- Entry Point -----------------------------
