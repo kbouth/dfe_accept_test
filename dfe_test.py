@@ -4,6 +4,7 @@ import sys
 import os
 import time
 import re
+import csv
 import configparser
 import pyvisa
 import epics
@@ -15,6 +16,7 @@ XSCT_BIN = "/tools/Xilinx/Vitis/2022.2/bin/xsct"
 VIVADO_BIN = "/tools/Xilinx/Vivado/2022.2/bin/vivado"
 VITIS_SETTINGS = "/tools/Xilinx/Vitis/2022.2/settings64.sh"
 SETTINGS_FILE = os.path.join(os.path.dirname(__file__), "dfe_settings.cfg")
+PWR_MEAS_FILE = os.path.join(os.path.dirname(__file__), "power_measurements.csv")
 
 LOG_DIR = "./logs"
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -113,6 +115,19 @@ qspi_callback = None
 io_callback = None
 afe_callback = None
 stress_callback = None
+manual_voltage_callback = None
+
+MANUAL_VOLTAGE_TOLERANCE = 0.05
+MANUAL_VOLTAGE_REFS = {
+    "C1": 0.90,
+    "C2": 1.20,
+    "C3": 2.50,
+    "C4": 2.50,
+    "C211": 0.85,
+    "C5": 3.30,
+    "C73": 1.80,
+    "C74": 1.20,
+}
 # --------------------------- Global Variables --------------------------
 DDR_FPGA_PROGRAMMED = False
 NOR_FPGA_PROGRAMMED = False
@@ -910,6 +925,132 @@ def stress_test(bd_num, tn):
         return False
 
 
+def _parse_voltage_input(raw_text):
+    match = re.search(r"[-+]?\d+(?:\.\d+)?", str(raw_text))
+    if not match:
+        raise ValueError("No numeric voltage found")
+    return float(match.group(0))
+
+
+def _normalize_board_id(board_num):
+    board_text = str(board_num).strip()
+    if board_text.isdigit():
+        return str(int(board_text))
+    return board_text
+
+
+def _append_power_measurement_csv(board_num, measurements, refs):
+    header = ["Board"] + list(refs.keys())
+    row = [_normalize_board_id(board_num)]
+
+    for tp in refs:
+        meas_raw = measurements.get(tp)
+        try:
+            meas_v = float(meas_raw)
+            row.append(f"{meas_v:.3f}")
+        except (TypeError, ValueError):
+            row.append("")
+
+    new_board = row[0]
+    updated_rows = []
+    replaced = False
+
+    if os.path.exists(PWR_MEAS_FILE):
+        with open(PWR_MEAS_FILE, newline="") as f:
+            reader = csv.DictReader(f)
+            if reader.fieldnames and "Board" in reader.fieldnames:
+                for old_row in reader:
+                    old_board = _normalize_board_id(old_row.get("Board", ""))
+                    if old_board == new_board:
+                        if not replaced:
+                            updated_rows.append(row)
+                            replaced = True
+                        continue
+
+                    rebuilt = [old_board] + [str(old_row.get(tp, "")).strip() for tp in refs]
+                    updated_rows.append(rebuilt)
+
+    if not replaced:
+        updated_rows.append(row)
+
+    with open(PWR_MEAS_FILE, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(updated_rows)
+
+
+# --------------------------- Manual Voltage Test Function --------------------------
+def manual_voltage_test(bd_num, tn):
+    del tn  # kept for consistent test function signature
+
+    log_file = os.path.join(LOG_DIR, f"zudfe_s{bd_num}.log")
+    print(f"\n=== Running Manual Voltage test on board {bd_num} ===")
+    write_log(log_file, f"\n=== Starting Manual Voltage Test for Board {bd_num} ===\n")
+    write_log(
+        log_file,
+        f"Reference tolerance: +/- {MANUAL_VOLTAGE_TOLERANCE:.2f} V\n"
+    )
+
+    if manual_voltage_callback:
+        measurements = manual_voltage_callback(
+            dict(MANUAL_VOLTAGE_REFS),
+            MANUAL_VOLTAGE_TOLERANCE,
+        )
+        if not isinstance(measurements, dict):
+            write_log(log_file, "\nERROR: Manual voltage callback did not return measurements\n")
+            write_log(log_file, "\n=== MANUAL VOLTAGE TEST FAIL ===\n")
+            return False
+    else:
+        print("Enter measured voltages from multimeter (example: 1.20 or +1.20 V)")
+        measurements = {}
+        for tp, ref_v in MANUAL_VOLTAGE_REFS.items():
+            while True:
+                raw = input(f"{tp} expected {ref_v:.2f} V, measured: ").strip()
+                try:
+                    measurements[tp] = _parse_voltage_input(raw)
+                    break
+                except ValueError:
+                    print("Invalid voltage input. Please enter a numeric value (e.g. 1.20)")
+
+    all_pass = True
+    for tp, ref_v in MANUAL_VOLTAGE_REFS.items():
+        if tp not in measurements:
+            write_log(log_file, f"{tp}: missing measurement -> FAIL\n")
+            all_pass = False
+            continue
+
+        try:
+            meas_v = float(measurements[tp])
+        except (TypeError, ValueError):
+            write_log(log_file, f"{tp}: invalid measurement '{measurements[tp]}' -> FAIL\n")
+            all_pass = False
+            continue
+
+        delta = meas_v - ref_v
+        passed = abs(delta) <= MANUAL_VOLTAGE_TOLERANCE
+        status = "PASS" if passed else "FAIL"
+        write_log(
+            log_file,
+            f"{tp}: measured={meas_v:+.3f} V, ref={ref_v:+.3f} V, delta={delta:+.3f} V -> {status}\n"
+        )
+        if not passed:
+            all_pass = False
+
+    _append_power_measurement_csv(
+        board_num=bd_num,
+        measurements=measurements,
+        refs=MANUAL_VOLTAGE_REFS,
+    )
+    write_log(log_file, f"Power measurement record updated: {PWR_MEAS_FILE}\n")
+
+    if all_pass:
+        write_log(log_file, "\n=== MANUAL VOLTAGE TEST PASS ===\n")
+        return True
+
+    write_log(log_file, "\n=== MANUAL VOLTAGE TEST FAIL ===\n")
+    return False
+
+
 
 
 # ----------------------------- Main Function ----------------------------
@@ -924,8 +1065,9 @@ def main():
     tn = open_telnet()
     results = {}
 
-    # Keep default behavior: run AFE only. Add other tests here when needed.
+    # Default behavior: run power measurements first, then AFE.
     test_plan = [
+        ("PWR_MEAS TEST", manual_voltage_test),
         ("AFE TEST", afe_test),
     ]
 

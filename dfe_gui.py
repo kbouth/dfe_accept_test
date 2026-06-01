@@ -3,12 +3,16 @@ from tkinter import scrolledtext, ttk
 from tkinter import messagebox
 import threading
 import time
+import subprocess
+import sys
 from datetime import datetime
 import csv
 import os
 import configparser
+import re
 
 import dfe_test
+import dfe_report
 
 
 class TestGUI:
@@ -64,8 +68,13 @@ class TestGUI:
             command=self.open_settings
         ).grid(row=0, column=3, padx=(0, 4), pady=3, sticky="w")
 
+        tk.Button(
+            control_frame, text="Generate Report", width=14,
+            command=self.generate_report
+        ).grid(row=0, column=4, padx=(0, 4), pady=3, sticky="w")
+
         tk.Label(control_frame, textvariable=self.ip_address_var).grid(
-            row=1, column=0, columnspan=4, padx=(0, 0), pady=3, sticky="w"
+            row=1, column=0, columnspan=5, padx=(0, 0), pady=3, sticky="w"
         )
 
         # ---------- Buttons + Status Lights (Aligned) ----------
@@ -75,7 +84,7 @@ class TestGUI:
 
         self.status = {}
 
-        buttons = ["QSPI", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
+        buttons = ["PWR_MEAS", "QSPI", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
 
         for i, name in enumerate(buttons):
 
@@ -104,7 +113,7 @@ class TestGUI:
 
         columns = (
             "Board",
-            "QSPI", "SD", "IP", "TEMP",
+            "PWR_MEAS", "QSPI", "SD", "IP", "TEMP",
             "IO", "AFE", "STRESS", "IBERT", "DDR",
             "ZYNQ_IP", "Overall", "Date", "Time"
         )
@@ -165,8 +174,10 @@ class TestGUI:
         dfe_test.sd_callback = self.sd_confirmation
         dfe_test.qspi_callback = self.qspi_confirmation
         dfe_test.io_callback = self.io_confirmation
+        dfe_test.manual_voltage_callback = self.manual_voltage_confirmation
         dfe_test.afe_callback = self.afe_confirmation
         dfe_test.stress_callback = self.stress_confirmation
+        dfe_report.report_callback = self.report_overwrite_confirmation
 
 
         self.load_results()
@@ -210,6 +221,11 @@ class TestGUI:
                     "SD": row["SD"] == "PASS",
                     "QSPI": row["QSPI"] == "PASS",
                     "IO": row["IO"] == "PASS",
+                    "PWR_MEAS": (
+                        row.get("PWR_MEAS") == "PASS"
+                        if row.get("PWR_MEAS") is not None
+                        else (row.get("MANUAL_V") == "PASS" if row.get("MANUAL_V") is not None else None)
+                    ),
                     "AFE": row["AFE"] == "PASS",
                     "STRESS": row["STRESS"] == "PASS",
                 }
@@ -223,6 +239,7 @@ class TestGUI:
                 # Restore table
                 vals = (
                     row["Board"],
+                    row.get("PWR_MEAS", row.get("MANUAL_V", "-")),
                     row["QSPI"],
                     row["SD"],
                     row["IP"],
@@ -253,7 +270,7 @@ class TestGUI:
 
             writer.writerow([
                 "Board",
-                "QSPI", "SD", "IP", "TEMP",
+                "PWR_MEAS", "QSPI", "SD", "IP", "TEMP",
                 "IO", "AFE", "STRESS", "IBERT", "DDR",
                 "ZYNQ_IP", "Overall", "Date", "Time"
             ])
@@ -288,6 +305,7 @@ class TestGUI:
         ip = res.get("IP")
         ibert = res.get("IBERT")
         sd = res.get("SD")
+        pwr_meas = res.get("PWR_MEAS")
         qspi = res.get("QSPI")
         io = res.get("IO")
         afe = res.get("AFE")
@@ -301,7 +319,7 @@ class TestGUI:
                 return "-"
             return "PASS" if v else "FAIL"
 
-        tests = [qspi, sd, ip, temp, io, afe, stress, ibert, ddr]
+        tests = [pwr_meas, qspi, sd, ip, temp, io, afe, stress, ibert, ddr]
         
         overall = (
             "PASS"
@@ -318,6 +336,7 @@ class TestGUI:
 
         vals = (
             board,
+            fmt(pwr_meas),
             fmt(qspi),
             fmt(sd),
             fmt(ip),
@@ -564,12 +583,72 @@ class TestGUI:
 
     # --------------------------------------------------
 
+    def generate_report(self):
+
+        t = threading.Thread(
+            target=self._generate_report_task,
+            daemon=True
+        )
+        t.start()
+
+    # --------------------------------------------------
+
+    def _generate_report_task(self):
+        self.append_log("\nGenerating report...\n")
+
+        try:
+            generated = dfe_report.generate_report()
+            if not generated:
+                self.append_log("Report generation canceled by user.\n")
+                return
+
+            self.append_log("Report generated successfully.\n")
+            self.root.after(
+                0,
+                lambda: messagebox.showinfo(
+                    "Report", "DFE report generated successfully."
+                )
+            )
+
+        except Exception as exc:
+            self.append_log(f"ERROR: Failed to run report script: {exc}\n")
+            self.root.after(
+                0,
+                lambda: messagebox.showerror(
+                    "Report", f"Failed to run report script:\n{exc}"
+                )
+            )
+
+    def report_overwrite_confirmation(self, report_path):
+
+        done = threading.Event()
+        result = {"value": False}
+
+        def show_popup():
+            answer = messagebox.askyesno(
+                "Report Exists",
+                f"{os.path.basename(report_path)} already exists. Overwrite it?",
+                parent=self.root,
+            )
+            result["value"] = answer
+            done.set()
+
+        self.root.after(0, show_popup)
+        done.wait()
+        return result["value"]
+
+    # --------------------------------------------------
+
     def _run_all_tests(self, bd):
         self.active_board = bd
 
         tn = dfe_test.open_telnet()
 
         try:
+            pwr_meas = dfe_test.manual_voltage_test(bd, tn)
+            self.results.setdefault(bd, {})["PWR_MEAS"] = pwr_meas
+            self.set_status("PWR_MEAS", pwr_meas)
+
             qspi = dfe_test.qspi_test(bd, tn)
             self.results.setdefault(bd, {})["QSPI"] = qspi
             self.set_status("QSPI", qspi)
@@ -646,6 +725,9 @@ class TestGUI:
 
             elif test == "IO":
                 res = dfe_test.io_test(bd, tn)
+
+            elif test == "PWR_MEAS":
+                res = dfe_test.manual_voltage_test(bd, tn)
             
             elif test == "AFE":
                 res = dfe_test.afe_test(bd, tn)
@@ -1108,6 +1190,82 @@ class TestGUI:
             ).pack(side="right", padx=10)
 
         # Run popup in GUI thread
+        self.root.after(0, show_popup)
+
+        done.wait()
+
+        return result["value"]
+
+    def manual_voltage_confirmation(self, refs, tolerance):
+
+        done = threading.Event()
+        result = {"value": None}
+
+        def parse_voltage(text):
+            match = re.search(r"[-+]?\d+(?:\.\d+)?", str(text))
+            if not match:
+                raise ValueError("Invalid voltage")
+            return float(match.group(0))
+
+        def show_popup():
+            win = tk.Toplevel(self.root)
+            win.title("Manual Voltage Test")
+            win.grab_set()
+            win.resizable(False, False)
+
+            frm = tk.Frame(win, padx=12, pady=10)
+            frm.pack(fill="both", expand=True)
+
+            tk.Label(
+                frm,
+                text=f"Enter measured voltages (tolerance: +/- {tolerance:.2f} V)",
+                font=("Arial", 11, "bold")
+            ).grid(row=0, column=0, columnspan=3, sticky="w", pady=(0, 8))
+
+            tk.Label(frm, text="Test Point", font=("Arial", 10, "bold")).grid(row=1, column=0, padx=(0, 8), sticky="w")
+            tk.Label(frm, text="Reference", font=("Arial", 10, "bold")).grid(row=1, column=1, padx=(0, 8), sticky="w")
+            tk.Label(frm, text="Measured", font=("Arial", 10, "bold")).grid(row=1, column=2, sticky="w")
+
+            entries = {}
+            row_idx = 2
+            for tp, ref_v in refs.items():
+                tk.Label(frm, text=tp).grid(row=row_idx, column=0, padx=(0, 8), pady=2, sticky="w")
+                tk.Label(frm, text=f"{ref_v:+.2f} V").grid(row=row_idx, column=1, padx=(0, 8), pady=2, sticky="w")
+                ent = tk.Entry(frm, width=14)
+                ent.grid(row=row_idx, column=2, pady=2, sticky="w")
+                entries[tp] = ent
+                row_idx += 1
+
+            btn_frame = tk.Frame(frm)
+            btn_frame.grid(row=row_idx, column=0, columnspan=3, sticky="e", pady=(10, 0))
+
+            def submit():
+                measurements = {}
+                for tp, ent in entries.items():
+                    raw = ent.get().strip()
+                    if not raw:
+                        messagebox.showerror("Missing value", f"Please enter measured voltage for {tp}.")
+                        return
+                    try:
+                        measurements[tp] = parse_voltage(raw)
+                    except ValueError:
+                        messagebox.showerror("Invalid value", f"Invalid voltage for {tp}: '{raw}'.")
+                        return
+
+                result["value"] = measurements
+                done.set()
+                win.destroy()
+
+            def cancel():
+                result["value"] = None
+                done.set()
+                win.destroy()
+
+            tk.Button(btn_frame, text="Cancel", width=10, command=cancel).pack(side="right", padx=(8, 0))
+            tk.Button(btn_frame, text="Submit", width=10, command=submit).pack(side="right")
+
+            win.protocol("WM_DELETE_WINDOW", cancel)
+
         self.root.after(0, show_popup)
 
         done.wait()
