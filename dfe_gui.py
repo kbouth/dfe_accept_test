@@ -24,6 +24,7 @@ class TestGUI:
         self.settings_file = os.path.join(os.path.dirname(__file__), "dfe_settings.cfg")
         self.previous_board = None  # Track board changes to reset FPGA state
         self.active_board = None
+        self.report_overwrite_all = False
         self.ip_address = ""
         self.ip_address_var = tk.StringVar(value="ZYNQ+ IP:         -")
         self.settings = self._load_settings()
@@ -589,29 +590,45 @@ class TestGUI:
     # --------------------------------------------------
 
     def generate_report(self):
+        report_options = self.prompt_report_scope()
+        if report_options is False:
+            return
+
+        selected_board = report_options["selected_board"]
+        self.report_overwrite_all = report_options["overwrite_all"]
 
         t = threading.Thread(
             target=self._generate_report_task,
+            args=(selected_board,),
             daemon=True
         )
         t.start()
 
     # --------------------------------------------------
 
-    def _generate_report_task(self):
-        self.append_log("\nGenerating report...\n")
+    def _generate_report_task(self, selected_board=None):
+        if selected_board is None:
+            self.append_log("\nGenerating reports for all boards...\n")
+        else:
+            self.append_log(f"\nGenerating report for board {selected_board}...\n")
 
         try:
-            generated = dfe_report.generate_report()
+            generated = dfe_report.generate_report(selected_board=selected_board)
             if not generated:
                 self.append_log("Report generation canceled by user.\n")
                 return
 
-            self.append_log("Report generated successfully.\n")
+            if selected_board is None:
+                self.append_log("Reports generated successfully.\n")
+                success_msg = "DFE reports generated successfully."
+            else:
+                self.append_log(f"Report for board {selected_board} generated successfully.\n")
+                success_msg = f"DFE report for board {selected_board} generated successfully."
+
             self.root.after(
                 0,
-                lambda: messagebox.showinfo(
-                    "Report", "DFE report generated successfully."
+                lambda msg=success_msg: messagebox.showinfo(
+                    "Report", msg
                 )
             )
 
@@ -624,8 +641,111 @@ class TestGUI:
                     "Report", msg
                 )
             )
+        finally:
+            self.report_overwrite_all = False
+
+    def get_report_board_choices(self):
+        boards = set(self.board_rows.keys()) | set(self.results.keys()) | set(self.detected_ips.keys())
+
+        def sort_key(value):
+            text = str(value).strip()
+            if text.isdigit():
+                return (0, int(text))
+            return (1, text)
+
+        return sorted((str(board).strip() for board in boards if str(board).strip()), key=sort_key)
+
+    def prompt_report_scope(self):
+        boards = self.get_report_board_choices()
+        if not boards:
+            messagebox.showerror("Report", "No board results are available to report.", parent=self.root)
+            return False
+
+        choice = {"value": False}
+        win = tk.Toplevel(self.root)
+        win.title("Generate Report")
+        win.transient(self.root)
+        win.grab_set()
+        win.resizable(False, False)
+
+        mode_var = tk.StringVar(value="all")
+        board_var = tk.StringVar(value=boards[0])
+        overwrite_all_var = tk.BooleanVar(value=False)
+
+        frame = tk.Frame(win, padx=14, pady=12)
+        frame.pack(fill="both", expand=True)
+
+        tk.Label(frame, text="Select report scope:").grid(row=0, column=0, columnspan=2, sticky="w")
+
+        def update_state(*_args):
+            state = "readonly" if mode_var.get() == "single" else "disabled"
+            board_combo.configure(state=state)
+            overwrite_all_check.configure(state="normal" if mode_var.get() == "all" else "disabled")
+
+        tk.Radiobutton(
+            frame,
+            text="All boards",
+            variable=mode_var,
+            value="all",
+            command=update_state,
+        ).grid(row=1, column=0, columnspan=2, sticky="w", pady=(8, 2))
+
+        tk.Radiobutton(
+            frame,
+            text="Individual board",
+            variable=mode_var,
+            value="single",
+            command=update_state,
+        ).grid(row=2, column=0, sticky="w", pady=2)
+
+        board_combo = ttk.Combobox(frame, textvariable=board_var, values=boards, state="disabled", width=18)
+        board_combo.grid(row=2, column=1, sticky="ew", padx=(8, 0), pady=2)
+
+        overwrite_all_check = tk.Checkbutton(
+            frame,
+            text="Overwrite all existing reports without asking again",
+            variable=overwrite_all_var,
+        )
+        overwrite_all_check.grid(row=3, column=0, columnspan=2, sticky="w", pady=(8, 0))
+
+        frame.grid_columnconfigure(1, weight=1)
+
+        button_row = tk.Frame(frame)
+        button_row.grid(row=4, column=0, columnspan=2, sticky="e", pady=(12, 0))
+
+        def submit():
+            if mode_var.get() == "single":
+                board = board_var.get().strip()
+                if not board:
+                    messagebox.showerror("Report", "Select a board.", parent=win)
+                    return
+                choice["value"] = {
+                    "selected_board": board,
+                    "overwrite_all": False,
+                }
+            else:
+                choice["value"] = {
+                    "selected_board": None,
+                    "overwrite_all": bool(overwrite_all_var.get()),
+                }
+            win.destroy()
+
+        def cancel():
+            choice["value"] = False
+            win.destroy()
+
+        tk.Button(button_row, text="Cancel", width=10, command=cancel).pack(side="right", padx=(8, 0))
+        tk.Button(button_row, text="Generate", width=10, command=submit).pack(side="right")
+
+        win.protocol("WM_DELETE_WINDOW", cancel)
+        update_state()
+        board_combo.current(0)
+        self.root.wait_window(win)
+        return choice["value"]
 
     def report_overwrite_confirmation(self, report_path):
+        if self.report_overwrite_all:
+            return True
 
         done = threading.Event()
         result = {"value": False}
