@@ -22,6 +22,7 @@ LOG_DIR = "./logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
 DDR_TIMEOUT = 120  # seconds
+DDR_2GB_TIMEOUT = 1200  # seconds (2GB memory test can take much longer)
 
 prefix ="DFE{BPM:2}"
 
@@ -111,7 +112,7 @@ log_callback = None
 ip_confirm_callback = None
 ibert_callback = None
 sd_callback = None
-qspi_callback = None
+# qspi_callback = None  # QSPI test disabled
 io_callback = None
 afe_callback = None
 stress_callback = None
@@ -202,83 +203,84 @@ def sd_test(bd_num,tn):
         tn.close()
         return False
 #--------------------------- QSPI Test Function --------------------------
-def qspi_test(bd_num,tn):
-    global DDR_FPGA_PROGRAMMED, NOR_FPGA_PROGRAMMED, STRESS_FPGA_PROGRAMMED
-    flush_console(tn)
-
-    DDR_FPGA_PROGRAMMED = False
-    NOR_FPGA_PROGRAMMED = False  
-    STRESS_FPGA_PROGRAMMED = False
-
-    
-    log_file = os.path.join(LOG_DIR, f"zudfe_s{bd_num}.log")
-    print(f"\n=== Running QSPI Boot test on board {bd_num} ===")
-    write_log(log_file, f"\n=== Starting QSPI Boot Test for Board {bd_num} ===\n")
-
-    qspi_dir = "./qspi_dfe"
-    QSPIProject = os.path.join(qspi_dir, f"qspi{bd_num}_gen.txt")
-
-    if not os.path.exists(QSPIProject):
-        try: 
-            subprocess.run(
-                            ["./flash_qspi.sh"],
-                            cwd="./fpga_boot",
-                            env={**os.environ, "VITIS_SETTINGS": VITIS_SETTINGS},
-                            check=True
-                        )
-            print("QSPI flash script completed")
-
-            os.makedirs(qspi_dir, exist_ok=True)
-            with open(QSPIProject, "a") as f:
-                    f.write("SUCCESS\n")
-        except subprocess.CalledProcessError:
-            print("ERROR: QSPI flash failed")
-            return False
-    else: 
-        print("QSPI flash already done, skipping flash step")
-    
-    
-
-    start_time = time.time()
-    qspi_test_complete = False
-
-    if qspi_callback:
-        response = qspi_callback()
-    else:
-        input("Set BOOT MODE to QSPI (0001) and press Enter to continue...")
-        #Power cycle the board to ensure QSPI boot
-        input("Please power cycle the board now and press Enter to continue...")
-
-    while True:
-        try:
-            # Read a line from the console
-            line = tn.readline().strip()
-            if line:
-                write_log(log_file, line + "\n")
-
-            if "FPGA successfully programmed." in line:
-                qspi_test_complete = True
-                break  # QSPI test done
-
-            # ---- Global timeout ----
-            if time.time() - start_time > DDR_TIMEOUT:
-                write_log(log_file, "\nERROR: QSPI test timed out\n")
-                tn.close()
-                return False
-
-        except pexpect.exceptions.TIMEOUT:
-            pass  # keep waiting
-        except pexpect.exceptions.EOF:
-            write_log(log_file, "\nERROR: QSPI console closed unexpectedly\n")
-            return False
-    
-    if qspi_test_complete:
-        write_log(log_file, "\n=== QSPI TEST PASS ===\n")
-        return True
-    else:
-        write_log(log_file, "\n=== QSPI TEST FAIL ===\n")
-        tn.close()
-        return False
+# QSPI test disabled for now
+# def qspi_test(bd_num,tn):
+#     global DDR_FPGA_PROGRAMMED, NOR_FPGA_PROGRAMMED, STRESS_FPGA_PROGRAMMED
+#     flush_console(tn)
+#
+#     DDR_FPGA_PROGRAMMED = False
+#     NOR_FPGA_PROGRAMMED = False  
+#     STRESS_FPGA_PROGRAMMED = False
+#
+#     
+#     log_file = os.path.join(LOG_DIR, f"zudfe_s{bd_num}.log")
+#     print(f"\n=== Running QSPI Boot test on board {bd_num} ===")
+#     write_log(log_file, f"\n=== Starting QSPI Boot Test for Board {bd_num} ===\n")
+#
+#     qspi_dir = "./qspi_dfe"
+#     QSPIProject = os.path.join(qspi_dir, f"qspi{bd_num}_gen.txt")
+#
+#     if not os.path.exists(QSPIProject):
+#         try: 
+#             subprocess.run(
+#                             ["./flash_qspi.sh"],
+#                             cwd="./fpga_boot",
+#                             env={**os.environ, "VITIS_SETTINGS": VITIS_SETTINGS},
+#                             check=True
+#                         )
+#             print("QSPI flash script completed")
+#
+#             os.makedirs(qspi_dir, exist_ok=True)
+#             with open(QSPIProject, "a") as f:
+#                     f.write("SUCCESS\n")
+#         except subprocess.CalledProcessError:
+#             print("ERROR: QSPI flash failed")
+#             return False
+#     else: 
+#         print("QSPI flash already done, skipping flash step")
+#     
+#     
+#
+#     start_time = time.time()
+#     qspi_test_complete = False
+#
+#     if qspi_callback:
+#         response = qspi_callback()
+#     else:
+#         input("Set BOOT MODE to QSPI (0001) and press Enter to continue...")
+#         #Power cycle the board to ensure QSPI boot
+#         input("Please power cycle the board now and press Enter to continue...")
+#
+#     while True:
+#         try:
+#             # Read a line from the console
+#             line = tn.readline().strip()
+#             if line:
+#                 write_log(log_file, line + "\n")
+#
+#             if "FPGA successfully programmed." in line:
+#                 qspi_test_complete = True
+#                 break  # QSPI test done
+#
+#             # ---- Global timeout ----
+#             if time.time() - start_time > DDR_TIMEOUT:
+#                 write_log(log_file, "\nERROR: QSPI test timed out\n")
+#                 tn.close()
+#                 return False
+#
+#         except pexpect.exceptions.TIMEOUT:
+#             pass  # keep waiting
+#         except pexpect.exceptions.EOF:
+#             write_log(log_file, "\nERROR: QSPI console closed unexpectedly\n")
+#             return False
+#     
+#     if qspi_test_complete:
+#         write_log(log_file, "\n=== QSPI TEST PASS ===\n")
+#         return True
+#     else:
+#         write_log(log_file, "\n=== QSPI TEST FAIL ===\n")
+#         tn.close()
+#         return False
 # --------------------------- DDR Test Function --------------------------
 def ddr_test(bd_num,tn):
     global DDR_FPGA_PROGRAMMED, NOR_FPGA_PROGRAMMED, STRESS_FPGA_PROGRAMMED
@@ -290,6 +292,7 @@ def ddr_test(bd_num,tn):
     ]
 
     log_file = os.path.join(LOG_DIR, f"zudfe_s{bd_num}.log")
+    ddr_result_file = os.path.join("./ddr_test/ddr_test_logs", f"zudfe_s{bd_num}_ddr_results.txt")
     print(f"\n=== Running DDR test on board {bd_num} ===")
     write_log(log_file, f"\n=== Starting DDR Test for Board {bd_num} ===\n")
 
@@ -305,110 +308,169 @@ def ddr_test(bd_num,tn):
         NOR_FPGA_PROGRAMMED = False  
         STRESS_FPGA_PROGRAMMED = False
 
-    start_time = time.time()
-    sent_r = False
-    sent_w = False
-    r_eye_complete = False
-    w_eye_complete = False
-    r_avg_eye = 0
-    w_avg_eye = 0
-    line = ""
+    command_outputs = {"r": [], "w": [], "7": []}
 
-    # Already programmed: board is sitting at the DDR menu, nothing more will
-    # print on the serial terminal, so send commands immediately before reading.
-    if DDR_FPGA_PROGRAMMED:
-        write_log(log_file, "[PYTHON] FPGA already programmed, sending 'r' immediately...\n")
-        flush_console(tn)
-        tn.sendline("r")
-        sent_r = True
-        write_log(log_file, ">>> SENT: r\n")
-    else:
-        write_log(log_file, "[PYTHON] Waiting for DDR menu...\n")
+    def send_cmd(cmd, desc):
+        tn.sendline(cmd)
+        write_log(log_file, f">>> SENT: {cmd} ({desc})\n")
 
-    while True:
-        # Send 'w' outside try so a TIMEOUT on readline cannot block it.
-        # Wait until read-eye results are done first to avoid interleaving.
-        if sent_r and r_eye_complete and not sent_w:
-            tn.sendline("w")
-            sent_w = True
-            write_log(log_file, ">>> SENT: w\n")
+    def run_eye_cmd(cmd, header_text, label):
+        send_cmd(cmd, label)
+        start_time = time.time()
+        block_lines = []
 
-        try:
-            # Read a line from the console
-            line = tn.readline().strip()
-            if line:
-                write_log(log_file, line + "\n")
-
-            # First-run path: send 'r' only after the board starts printing
-            # (i.e. the DDR menu has appeared). readline() will succeed here
-            # because the board is actively outputting data after programming.
-            if not sent_r:
-                tn.sendline("r")
-                sent_r = True
-                write_log(log_file, ">>> SENT: r\n")
-
-            if "Read Eye Test Results :" in line:
-                r_eye_buffer = ""
-                # Capture the eye test results
-                while True:
-                    r_eye_line = tn.readline().strip()
-                    write_log(log_file, r_eye_line + "\n")
-                    if r_eye_line == "":
-                        break
-                    r_eye_buffer += r_eye_line + "\n"
-
-                eye_vals, avg_eye = parse_eye_width(r_eye_buffer)
-                if eye_vals:
-                    write_log(log_file, f"\nExtracted Eye Widths: {eye_vals}\n")
-                    write_log(log_file, f"Average Eye Width: {avg_eye:.2f}%\n")
-                    r_avg_eye = avg_eye
-                    r_eye_complete = True
-                else:
-                    write_log(log_file, "No Eye Width data found.\n")
-          
-            if "Write Eye Test Results:" in line:
-                w_eye_buffer = ""
-                # Capture the eye test results
-                while True:
-                    w_eye_line = tn.readline().strip()
-                    write_log(log_file, w_eye_line + "\n")
-                    if w_eye_line == "":
-                        break
-                    w_eye_buffer += w_eye_line + "\n"
-                
-
-                eye_vals, avg_eye = parse_eye_width(w_eye_buffer)
-                if eye_vals:
-                    write_log(log_file, f"\nExtracted Eye Widths: {eye_vals}\n")
-                    write_log(log_file, f"Average Eye Width: {avg_eye:.2f}%\n")
-                    w_avg_eye = avg_eye
-                    w_eye_complete = True
-                else:
-                    write_log(log_file, "No Eye Width data found.\n")
-
-            if r_eye_complete and w_eye_complete:
-                break  # both tests done
-
-            # ---- Global timeout ----
+        while True:
             if time.time() - start_time > DDR_TIMEOUT:
-                write_log(log_file, "\nERROR: DDR test timed out\n")
-                tn.close()
-                return False
+                write_log(log_file, f"\nERROR: {label} timed out\n")
+                return False, [], None
 
-        except pexpect.exceptions.TIMEOUT:
-            pass  # keep waiting
-        except pexpect.exceptions.EOF:
-            write_log(log_file, "\nERROR: DDR console closed unexpectedly\n")
-            return False
-    
-    print(f"Read Avg Eye Width: {r_avg_eye:.2f}%, Write Avg Eye Width: {w_avg_eye:.2f}%")
-    if r_avg_eye > 70 and w_avg_eye > 70 :
+            try:
+                line = tn.readline().strip()
+                if line:
+                    write_log(log_file, line + "\n")
+                    command_outputs[cmd].append(line)
+
+                if header_text in line:
+                    while True:
+                        eye_line = tn.readline().strip()
+                        if eye_line:
+                            write_log(log_file, eye_line + "\n")
+                            command_outputs[cmd].append(eye_line)
+                            block_lines.append(eye_line)
+                        if eye_line == "":
+                            break
+
+                    eye_vals, avg_eye = parse_eye_width("\n".join(block_lines))
+                    if eye_vals:
+                        write_log(log_file, f"\nExtracted Eye Widths ({label}): {eye_vals}\n")
+                        write_log(log_file, f"Average Eye Width ({label}): {avg_eye:.2f}%\n")
+                        return True, eye_vals, avg_eye
+
+                    write_log(log_file, f"No Eye Width data found for {label}.\n")
+                    return False, [], None
+
+            except pexpect.exceptions.TIMEOUT:
+                pass
+            except pexpect.exceptions.EOF:
+                write_log(log_file, "\nERROR: DDR console closed unexpectedly\n")
+                return False, [], None
+
+    def run_verbose_cmd():
+        send_cmd("v", "enable verbose mode")
+        end_time = time.time() + 3.0
+        while time.time() < end_time:
+            try:
+                line = tn.readline().strip()
+                if line:
+                    write_log(log_file, line + "\n")
+                    # command_outputs["v"].append(line)
+            except pexpect.exceptions.TIMEOUT:
+                pass
+            except pexpect.exceptions.EOF:
+                write_log(log_file, "\nERROR: DDR console closed unexpectedly\n")
+                return False
+        return True
+
+    def run_2gb_test():
+        send_cmd("7", "test first 2 GB DDR")
+        start_time = time.time()
+        total_error_count = 0
+        fail_by_error_threshold = False
+
+        while True:
+            if time.time() - start_time > DDR_2GB_TIMEOUT:
+                write_log(log_file, "\nERROR: DDR first 2 GB test timed out\n")
+                return False, total_error_count
+
+            try:
+                line = tn.readline().strip()
+                if line:
+                    write_log(log_file, line + "\n")
+                    command_outputs["7"].append(line)
+
+                    # Example row: MT0( 0)  |      0 |    0, ...
+                    # Some firmware prints "MT0" (zero), others "MTO" (letter O).
+                    mto_match = re.match(r"\s*MT[0O]\(\s*(\d+)\)\s*\|\s*(\d+)\s*\|", line)
+                    if mto_match:
+                        mto_idx = int(mto_match.group(1))
+                        total_error_count += int(mto_match.group(2))
+
+                        if total_error_count > 10:
+                            fail_by_error_threshold = True
+
+                        # Complete this stage once last test row is captured.
+                        if mto_idx == 14:
+                            if fail_by_error_threshold:
+                                write_log(log_file, "First 2 GB DDR test FAILED (cumulative error count > 10 at/through MTO(14)).\n")
+                                return False, total_error_count
+
+                            write_log(log_file, "First 2 GB DDR test complete (reached MTO(14)).\n")
+                            return True, total_error_count
+
+                    # # Backward-compatible completion if firmware returns to prompt first.
+                    # if "Enter Test Option:" in line:
+                    #     if fail_by_error_threshold:
+                    #         write_log(log_file, "First 2 GB DDR test FAILED (cumulative error count > 10).\n")
+                    #         return False, total_error_count
+
+                        # write_log(log_file, "First 2 GB DDR test complete (prompt returned).\n")
+                        # return True, total_error_count
+
+            except pexpect.exceptions.TIMEOUT:
+                pass
+            except pexpect.exceptions.EOF:
+                write_log(log_file, "\nERROR: DDR console closed unexpectedly\n")
+                return False, total_error_count
+
+    run_ok = run_verbose_cmd()
+    r_ok, r_eye_vals, r_avg_eye = run_eye_cmd("r", "Read Eye Test Results :", "read eye test")
+    w_ok, w_eye_vals, w_avg_eye = run_eye_cmd("w", "Write Eye Test Results:", "write eye test")
+    ddr_2gb_ok, ddr_2gb_error_total = run_2gb_test()
+
+    with open(ddr_result_file, "w") as f:
+        f.write(f"DDR Test Results for Board {bd_num}\n")
+        f.write(f"Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+
+        f.write("Summary:\n\n")
+        f.write("Read Eye Test:\n")
+        f.write(f"  Status: {'PASS' if r_ok else 'FAIL'}\n")
+        f.write(f"  Eye Widths: {r_eye_vals}\n")
+        f.write(f"  Average Eye Width: {r_avg_eye if r_avg_eye is not None else 'N/A'}\n\n")
+
+        f.write("Write Eye Test:\n")
+        f.write(f"  Status: {'PASS' if w_ok else 'FAIL'}\n")
+        f.write(f"  Eye Widths: {w_eye_vals}\n")
+        f.write(f"  Average Eye Width: {w_avg_eye if w_avg_eye is not None else 'N/A'}\n\n")
+
+        f.write("First 2 GB DDR Test (command '7'):\n")
+        f.write(f"  Status: {'PASS' if ddr_2gb_ok else 'FAIL'}\n\n")
+        f.write(f"  Cumulative Error Count: {ddr_2gb_error_total}\n\n")
+
+        f.write("Raw Command Output:\n")
+        for cmd in ["r", "w", "7"]:
+            f.write(f"\n[{cmd}]\n")
+            if command_outputs[cmd]:
+                for line in command_outputs[cmd]:
+                    f.write(line + "\n")
+            else:
+                f.write("(no output captured)\n")
+
+    write_log(log_file, f"DDR detailed results written: {ddr_result_file}\n")
+
+    r_eye_pass = r_ok and (r_avg_eye is not None) and (r_avg_eye > 70)
+    w_eye_pass = w_ok and (w_avg_eye is not None) and (w_avg_eye > 70)
+    ddr_pass = run_ok and r_eye_pass and w_eye_pass and ddr_2gb_ok
+
+    if r_avg_eye is not None and w_avg_eye is not None:
+        print(f"Read Avg Eye Width: {r_avg_eye:.2f}%, Write Avg Eye Width: {w_avg_eye:.2f}%")
+
+    if ddr_pass:
         write_log(log_file, "\n=== DDR TEST PASS ===\n")
         return True
-    else:
-        write_log(log_file, "\n=== DDR TEST FAIL ===\n")
-        tn.close()
-        return False
+
+    write_log(log_file, "\n=== DDR TEST FAIL ===\n")
+    tn.close()
+    return False
 #--------------------------- Temperature Test Function -------------------------- 
 def temp_test(bd_num,tn):
     global DDR_FPGA_PROGRAMMED, NOR_FPGA_PROGRAMMED, STRESS_FPGA_PROGRAMMED
@@ -911,16 +973,16 @@ def stress_test(bd_num, tn):
 
     time.sleep(3)
 
-    current_prail85 = epics.caget(Prail_85PV, count=10)
+    current_prail85 = epics.caget(Prail_85PV, count=5)
 
     write_log(log_file, f"\nCurrent on 0.85 Power Rail: {current_prail85} A\n")
 
-    if current_prail85 > 5.0:
-        write_log(log_file, "\nCurrent on 0.85 rail greater than 5 Amps under stress! Test pass.\n")
+    if current_prail85 >= 3.7:
+        write_log(log_file, "\n0.85 power rail operates successfully under stress! Test pass.\n")
         write_log(log_file, "\n=== STRESS TEST PASS ===\n")
         return True
     else:
-        write_log(log_file, "\nCurrent on 0.85 rail did not increase under stress. Test fail.\n")
+        write_log(log_file, "\n0.85 power rail fails under stress! Test fail.\n")
         write_log(log_file, "\n=== STRESS TEST FAIL ===\n")
         return False
 

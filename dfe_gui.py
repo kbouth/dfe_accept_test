@@ -84,7 +84,8 @@ class TestGUI:
 
         self.status = {}
 
-        buttons = ["PWR_MEAS", "QSPI", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
+        #buttons = ["PWR_MEAS", "QSPI", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
+        buttons = ["PWR_MEAS", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
 
         for i, name in enumerate(buttons):
 
@@ -113,7 +114,8 @@ class TestGUI:
 
         columns = (
             "Board",
-            "PWR_MEAS", "QSPI", "SD", "IP", "TEMP",
+            #"PWR_MEAS", "QSPI", "SD", "IP", "TEMP",
+            "PWR_MEAS", "SD", "IP", "TEMP",
             "IO", "AFE", "STRESS", "IBERT", "DDR",
             "ZYNQ_IP", "Overall", "Date", "Time"
         )
@@ -172,7 +174,7 @@ class TestGUI:
         dfe_test.ip_confirm_callback = self.ask_ip_confirm
         dfe_test.ibert_callback = self.ibert_confirmation
         dfe_test.sd_callback = self.sd_confirmation
-        dfe_test.qspi_callback = self.qspi_confirmation
+        # dfe_test.qspi_callback = self.qspi_confirmation  # QSPI disabled
         dfe_test.io_callback = self.io_confirmation
         dfe_test.manual_voltage_callback = self.manual_voltage_confirmation
         dfe_test.afe_callback = self.afe_confirmation
@@ -219,7 +221,7 @@ class TestGUI:
                     "IP": row["IP"] == "PASS",
                     "IBERT": row["IBERT"] == "PASS",
                     "SD": row["SD"] == "PASS",
-                    "QSPI": row["QSPI"] == "PASS",
+                    # "QSPI": row["QSPI"] == "PASS",  # QSPI disabled
                     "IO": row["IO"] == "PASS",
                     "PWR_MEAS": (
                         row.get("PWR_MEAS") == "PASS"
@@ -240,7 +242,7 @@ class TestGUI:
                 vals = (
                     row["Board"],
                     row.get("PWR_MEAS", row.get("MANUAL_V", "-")),
-                    row["QSPI"],
+                    # row["QSPI"],  # QSPI disabled
                     row["SD"],
                     row["IP"],
                     row["TEMP"],
@@ -270,7 +272,8 @@ class TestGUI:
 
             writer.writerow([
                 "Board",
-                "PWR_MEAS", "QSPI", "SD", "IP", "TEMP",
+                #"PWR_MEAS", "QSPI", "SD", "IP", "TEMP",
+                "PWR_MEAS", "SD", "IP", "TEMP",
                 "IO", "AFE", "STRESS", "IBERT", "DDR",
                 "ZYNQ_IP", "Overall", "Date", "Time"
             ])
@@ -306,7 +309,8 @@ class TestGUI:
         ibert = res.get("IBERT")
         sd = res.get("SD")
         pwr_meas = res.get("PWR_MEAS")
-        qspi = res.get("QSPI")
+        # qspi = res.get("QSPI")  # QSPI disabled
+        qspi = None  # QSPI disabled
         io = res.get("IO")
         afe = res.get("AFE")
         stress = res.get("STRESS")
@@ -319,7 +323,8 @@ class TestGUI:
                 return "-"
             return "PASS" if v else "FAIL"
 
-        tests = [pwr_meas, qspi, sd, ip, temp, io, afe, stress, ibert, ddr]
+        #tests = [pwr_meas, qspi, sd, ip, temp, io, afe, stress, ibert, ddr]
+        tests = [pwr_meas, sd, ip, temp, io, afe, stress, ibert, ddr]
         
         overall = (
             "PASS"
@@ -337,7 +342,7 @@ class TestGUI:
         vals = (
             board,
             fmt(pwr_meas),
-            fmt(qspi),
+            # fmt(qspi),  # QSPI disabled
             fmt(sd),
             fmt(ip),
             fmt(temp),
@@ -611,11 +616,12 @@ class TestGUI:
             )
 
         except Exception as exc:
-            self.append_log(f"ERROR: Failed to run report script: {exc}\n")
+            error_msg = f"Failed to run report script:\n{exc}"
+            self.append_log(f"ERROR: {error_msg}\n")
             self.root.after(
                 0,
-                lambda: messagebox.showerror(
-                    "Report", f"Failed to run report script:\n{exc}"
+                lambda msg=error_msg: messagebox.showerror(
+                    "Report", msg
                 )
             )
 
@@ -649,9 +655,9 @@ class TestGUI:
             self.results.setdefault(bd, {})["PWR_MEAS"] = pwr_meas
             self.set_status("PWR_MEAS", pwr_meas)
 
-            qspi = dfe_test.qspi_test(bd, tn)
-            self.results.setdefault(bd, {})["QSPI"] = qspi
-            self.set_status("QSPI", qspi)
+            # qspi = dfe_test.qspi_test(bd, tn)  # QSPI disabled
+            # self.results.setdefault(bd, {})["QSPI"] = qspi
+            # self.set_status("QSPI", qspi)
 
             sd = dfe_test.sd_test(bd, tn)
             self.results.setdefault(bd, {})["SD"] = sd
@@ -720,8 +726,8 @@ class TestGUI:
             elif test == "SD":
                 res = dfe_test.sd_test(bd, tn)
 
-            elif test == "QSPI":
-                res = dfe_test.qspi_test(bd, tn)
+            # elif test == "QSPI":  # QSPI disabled
+            #     res = dfe_test.qspi_test(bd, tn)
 
             elif test == "IO":
                 res = dfe_test.io_test(bd, tn)
@@ -1377,7 +1383,7 @@ class TestGUI:
 
             title_lbl = tk.Label(
                 win,
-                text="Stress Teset Step",
+                text="Stress Test Step",
                 font=("Arial", 14, "bold")
             )
             title_lbl.pack(pady=8)

@@ -1,7 +1,9 @@
 import csv
 from reportlab.lib.pagesizes import letter, inch
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, PageBreak
+from reportlab.lib.enums import TA_CENTER
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer, PageBreak, Preformatted
 from reportlab.lib import colors
+from reportlab.lib.styles import ParagraphStyle
 import os
 
 ###############################################################################################
@@ -19,10 +21,11 @@ pwr_measurements = 'power_measurements.csv'
 
 freport = 'DFE_Verification_Report.pdf'
 
-TEST_COLUMNS = ["PWR_MEAS", "QSPI", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
+#TEST_COLUMNS = ["PWR_MEAS", "QSPI", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
+TEST_COLUMNS = ["PWR_MEAS", "SD", "IP", "TEMP", "IO", "AFE", "STRESS", "IBERT", "DDR"]
 
 TEST_DESCRIPTION = ["Correct Power Measurements?",
-                "Boot from QSPI?",
+                # "Boot from QSPI?",  # QSPI disabled
                 "Boot from SD?",
                 "DFE IP address functions correctly?",
                 "DFE temperatures stable?",
@@ -46,6 +49,15 @@ PWR_MEAS_REFS = {
 }
 
 report_callback = None
+DDR_TEXT_STYLE = ParagraphStyle(
+    "DDRTextStyle",
+    fontName="Courier",
+    fontSize=7,
+    leading=8,
+    alignment=TA_CENTER,
+    leftIndent=54,
+    rightIndent=54,
+)
 
 
 def normalize_status(value):
@@ -108,6 +120,37 @@ def load_summary_rows(board_results):
     for board, info in board_results.items():
         rows.append([board, info.get("overall", "-")])
     return rows
+
+
+def get_ddr_result_path(board):
+    board_text = str(board).strip()
+    board_variants = [board_text]
+    if board_text.isdigit():
+        board_variants.append(f"{int(board_text):02d}")
+
+    base_dir = os.path.dirname(__file__)
+    candidates = []
+    for board_value in board_variants:
+        filename = f"zudfe_s{board_value}_ddr_results.txt"
+        candidates.extend([
+            os.path.join(base_dir, "ddr_test", "ddr_test_logs", filename),
+            os.path.join(base_dir, "ddr_test", "ddr_test_logs", "ddr_test", "ddr_test_logs", filename),
+        ])
+
+    for path in candidates:
+        if os.path.exists(path):
+            return path
+
+    return None
+
+
+def load_ddr_result_text(board):
+    ddr_path = get_ddr_result_path(board)
+    if not ddr_path:
+        return None, None
+
+    with open(ddr_path) as f:
+        return ddr_path, f.read()
 
 
 def add_status_color(table, row_idx, col_idx, status):
@@ -281,6 +324,33 @@ def generate_report():
             add_status_color(test_table, row_idx, 2, test_data[row_idx][2])
 
         elements.append(test_table)
+
+        ddr_status = info.get("tests", {}).get("DDR", "-")
+        if ddr_status != "-":
+            elements.append(Spacer(1, 0.2 * inch))
+
+            ddr_title = Table(
+                [["DDR Detailed Results"]],
+                colWidths=[6 * inch],
+                style=TableStyle([
+                    ("BACKGROUND", (0, 0), (0, 0), colors.lemonchiffon),
+                    ("FONTNAME", (0, 0), (0, 0), "Helvetica-Bold"),
+                    ("ALIGN", (0, 0), (0, 0), "CENTER"),
+                    ("GRID", (0, 0), (-1, -1), 1, colors.black),
+                    ("BOX", (0, 0), (-1, -1), 2, colors.black),
+                ]),
+            )
+            elements.append(ddr_title)
+
+            ddr_path, ddr_text = load_ddr_result_text(board)
+            if ddr_text:
+                elements.append(Spacer(1, 0.1 * inch))
+                elements.append(
+                    Preformatted(
+                        ddr_text,
+                        style=DDR_TEXT_STYLE,
+                    )
+                )
 
         
 
